@@ -24,16 +24,26 @@ public class MapVue {
 	}
 	
 	private void buildMap() {
-		for (int j = 0 ; j < mapTileMap.getMap().length ; j++) {
-			if (mapTileMap.getMap()[j] == 112)
+		for (int j = 0 ; j < mapTileMap.getMap().size() ; j++) {
+			if (mapTileMap.getMap().get(j).equals(112))
 				mapTilePane.getChildren().add(new ImageView(sky));
-			else if (mapTileMap.getMap()[j] == 2)
+			else if (mapTileMap.getMap().get(j).equals(2))
 				mapTilePane.getChildren().add(new ImageView(grass));
-			else if (mapTileMap.getMap()[j] == 20)
+			else if (mapTileMap.getMap().get(j).equals(20))
 				mapTilePane.getChildren().add(new ImageView(dirt));
-			else if (mapTileMap.getMap()[j] == 165)
+			else if (mapTileMap.getMap().get(j).equals(165))
 				mapTilePane.getChildren().add(new ImageView(river));
 		}
+	}
+	public void reloadTile(int index) {
+		if (mapTileMap.getMap().get(index).equals(112))
+			mapTilePane.getChildren().set(index, new ImageView(sky));
+		else if (mapTileMap.getMap().get(index).equals(2))
+			mapTilePane.getChildren().set(index, new ImageView(grass));
+		else if (mapTileMap.getMap().get(index).equals(20))
+			mapTilePane.getChildren().set(index, new ImageView(dirt));
+		else if (mapTileMap.getMap().get(index).equals(165))
+			mapTilePane.getChildren().set(index, new ImageView(river));
 	}
 	
 	
