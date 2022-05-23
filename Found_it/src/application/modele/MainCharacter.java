@@ -147,4 +147,5 @@ public abstract class MainCharacter {
     public void takeDamage(int damage) {
     	hp.set(hp.getValue() - damage);
     }
+	
 }

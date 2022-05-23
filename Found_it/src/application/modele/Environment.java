@@ -1,5 +1,8 @@
 package application.modele;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import application.modele.algo.BFS;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +48,7 @@ public class Environment {
             e.gravity();
         }
     }
+    
     public void updatePlayer() {
         if (player.getLeftPressedBoolean())
 			player.moveLeft();
