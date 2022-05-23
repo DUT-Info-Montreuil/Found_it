@@ -30,13 +30,13 @@ public class Environment {
     public void update() {
         bfs.launch();
         for (Enemy e : ennemies) {
-            if (e.isAttacking() || bfs.isNear(e, e.getRangeForAttack()))
+            if (bfs.isNear(e, e.getRangeForAttack()))
                 e.goAttacking();
             if (e.isAttacking())
                 e.attack(bfs);
             else 
                 e.harmless();
-            if (e.isJumpingBoolean())
+            if (e.isJumpingBoolean() || e instanceof Slime)
                 e.jump();
             if (e.leftPressedBoolean())
                 e.moveLeft();

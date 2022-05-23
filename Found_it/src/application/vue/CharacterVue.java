@@ -5,7 +5,6 @@ import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.Slime;
 import application.modele.Zombie;
-import javafx.beans.value.ChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -28,9 +27,9 @@ public class CharacterVue {
 		c = p;
 		initImageCharacter();
 		addCharacterInMap();
-		// tools = new ImageView();
-		// addToolsInMap();
+		addToolsInMap();
 		linkCharacter();
+		linkTool();
 		new InterfacePlayerVue(p, mapPane);
 	}
 
@@ -39,10 +38,6 @@ public class CharacterVue {
 		c = p;
 		initImageCharacter();
 		addCharacterInMap();
-		if (p instanceof Player) {
-			tools = new ImageView();
-			addToolsInMap();
-		}
 		linkCharacter();
 	}
 	
@@ -66,6 +61,7 @@ public class CharacterVue {
 		mapPane.getChildren().add(character);
 	}
 	private void addToolsInMap() {
+		tools = new ImageView();
 		mapPane.getChildren().add(tools);
 	}
 	
@@ -92,6 +88,17 @@ public class CharacterVue {
 	}
 
 
+	public void linkTool() {
+		tools.layoutXProperty().bind(c.getXProperty());
+		tools.layoutYProperty().bind(c.getYProperty());
+		tools.setY(10);
+		c.getDirectionnalXProperty().addListener((obs,old,nouv)-> {
+			if (c.getDirectionnalX() == - 1)
+				character.setImage(characterLeft);	
+			else
+				character.setImage(characterRight);
+		});
+	}
 
 	// public void linkPlayer(MainCharacter p) {
 	// 	ChangeListener<Number> obs1 = 

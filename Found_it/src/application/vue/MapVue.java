@@ -24,7 +24,7 @@ public class MapVue {
 	}
 	
 	private void buildMap() {
-		for (int j = 0 ; j < mapTileMap.getMap().size() ; j++) {
+		for (int j = 0 ; j < mapTileMap.getMap().size() ; j++)
 			if (mapTileMap.getMap().get(j).equals(112))
 				mapTilePane.getChildren().add(new ImageView(sky));
 			else if (mapTileMap.getMap().get(j).equals(2))
@@ -33,7 +33,6 @@ public class MapVue {
 				mapTilePane.getChildren().add(new ImageView(dirt));
 			else if (mapTileMap.getMap().get(j).equals(165))
 				mapTilePane.getChildren().add(new ImageView(river));
-		}
 	}
 	public void reloadTile(int index) {
 		if (mapTileMap.getMap().get(index).equals(112))

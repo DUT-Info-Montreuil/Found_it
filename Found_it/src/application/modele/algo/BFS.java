@@ -13,9 +13,7 @@ public class BFS {
 	private Coord start;
 	private int[][] bfs;
 	private final int jumpMax;
-	private final static int VIDE = -5;
-	private final static int IMPOSSIBLE = -2;
-	private final static int BLOCPHYSIQUE = -9;
+	private final static int VIDE = -5, IMPOSSIBLE = -2, BLOCPHYSIQUE = -9;
 	
 	public BFS(MainCharacter target, TileMap map, int jumpMax) {
 		file = new ArrayList<Coord>();
@@ -42,7 +40,7 @@ public class BFS {
 		return bfs;
 	}
 	private void initBFS() {
-		start = new Coord(mapTile.getXCharacterInMap(target.getX()),mapTile.getYIndiceHeight(target.getY()));
+		start = new Coord(mapTile.getXCharacterInMap(target.getX()),mapTile.getYIndiceHeight(target.getYBOT()));
 		for (int i = 0 ; i < mapTile.getHeight() ; i++)
 			for (int j = 0 ; j < mapTile.getWidth() ; j++)
 				if (mapTile.wasTransparent(mapTile.getCodeTuileWithIndice(j, i)))

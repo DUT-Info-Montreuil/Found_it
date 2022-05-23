@@ -43,19 +43,19 @@ public abstract class Enemy extends MainCharacter{
 
     public void attack(BFS bfs) {
         this.bfs = bfs;
-        if (!isAlive() || !bfs.isNear(this, this.getRangeForAttack()))
+        if (!isAlive() || !bfs.isNear(this, getRangeForAttack()))
             isAttacking = false;
         else {
-            if (bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getY()))) 
+            if (bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getYBOT()))) 
                 setRight(true);
-            else if (bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getY()))) 
+            else if (bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getYBOT()))) 
                 setLeft(true);
-            else if (bfs.goUp(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getY())))
+            else if (bfs.goUp(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getYBOT())))
                 setIsJumping(true);
             }
-            if (!bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getY())))
+            if (!bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getYBOT())))
                 setRight(false);
-            if (!bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getY())))
+            if (!bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getYBOT())))
                 setLeft(false);
 	}
 

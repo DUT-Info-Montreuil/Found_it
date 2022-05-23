@@ -4,8 +4,7 @@ import javafx.collections.ObservableList;
 
 public class TileMap {
 	
-	private int width;
-	private int height;
+	private int width, height;
 	private final int PIXEL = 32;
 	private final int[] LISTIDBLOCKTRANSPARENT = {112}; 
 	private ObservableList<Integer> map;

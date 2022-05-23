@@ -1,22 +1,16 @@
 package application.modele;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.util.Duration;
 
 public abstract class MainCharacter {
 
-	private IntegerProperty x;
-	private IntegerProperty y;
+	private IntegerProperty x, y;
 	private final int PIXELCHARACTER = 32 - 2;
-	private int VIT;
+	private int VIT, att;
 	protected TileMap mapTile;
-	private int jumpBlock = 0;
-	private int jumpMAX;
+	private int jumpBlock = 0, jumpMAX;
 	private boolean isFalling = false, isJumping = false;
-	private int att;
 	private IntegerProperty hp;
 	private IntegerProperty dx;
 	
@@ -127,7 +121,7 @@ public abstract class MainCharacter {
 		}
 	}
 	public void launchJump() {
-		if (jumpBlock >= jumpMAX*mapTile.getPIXELBLOCK() || !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 3)) || !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 3))) {
+		if (jumpBlock >= jumpMAX*mapTile.getPIXELBLOCK() - 1 || !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 3)) || !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 3))) {
 			jumpBlock = 0;
 			isJumping = false;
 			gravity();

@@ -58,7 +58,6 @@ public class Controller  implements Initializable{
 		e.getListEnemiesProperty().addListener(lObs);
 		e.addEnemy(new Zombie (400, 400, mapTile, 10, 30));
 		e.addEnemy(new Slime (500, 150, mapTile, 10, 30));
-		System.out.println(game.getHeight());
 		initGameLoop();
 		gameLoop.play();
 		
