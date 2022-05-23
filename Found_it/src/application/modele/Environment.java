@@ -30,6 +30,9 @@ public class Environment {
     public void update() {
         bfs.launch();
         for (Enemy e : ennemies) {
+
+            //e.agir();
+
             if (bfs.isNear(e, e.getRangeForAttack()))
                 e.goAttacking();
             if (e.isAttacking())

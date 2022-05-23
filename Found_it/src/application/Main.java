@@ -16,26 +16,19 @@ private MediaPlayer mediaPlayer;
  
 @Override
 public void start(Stage primaryStage) {
-try {
-music();
-BorderPane root = FXMLLoader.load(getClass().getResource("vue/vue1.fxml"));
-Scene scene = new Scene(root,960,544);
-primaryStage.setScene(scene);
-primaryStage.setResizable(false);
-primaryStage.setFullScreen(true);
-primaryStage.show();
-root.requestFocus();
-} catch(Exception e) {
-e.printStackTrace();
+	try {
+		BorderPane root = FXMLLoader.load(getClass().getResource("vue/vue1.fxml"));
+		Scene scene = new Scene(root,960,544);
+		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
+		primaryStage.setFullScreen(true);
+		primaryStage.show();
+		root.requestFocus();
+	} catch(Exception e) {
+	e.printStackTrace();
+	}
 }
-}
- 
-public void music() {
-String s = "/home/etudiants/info/nramirez/prive/Found_it/Found_it/src/application/music.mp3";
-Media media = new Media(Paths.get(s).toUri().toString());
-mediaPlayer = new MediaPlayer(media);
-mediaPlayer.play();
-}
+
  
 public static void main(String[] args) {
 launch(args);
