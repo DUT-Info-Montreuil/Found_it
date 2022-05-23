@@ -13,12 +13,8 @@ public abstract class MainCharacter {
 	private final int PIXELCHARACTER = 32 - 2;
 	private int VIT;
 	protected TileMap mapTile;
-	private Timeline gravity;
-	private Timeline jump;
-	private int jumpBlock;
+	private int jumpBlock = 0;
 	private int jumpMAX;
-	private double rapidityOfGravity = 0.004;
-	private double rapidityOfJump = 0.003;
 	private boolean isFalling = false, isJumping = false;
 	private int att;
 	private IntegerProperty hp;
@@ -32,8 +28,6 @@ public abstract class MainCharacter {
 		this.att = att;
 		this.hp = new SimpleIntegerProperty(pv);
 		dx = new SimpleIntegerProperty(1);
-		initGravity();
-		initJump();
 	}
 	public IntegerProperty getXProperty() {
 		return x;
@@ -61,6 +55,11 @@ public abstract class MainCharacter {
 		return y.getValue() ;
 	}
 	
+	public void setIsJumping(boolean b) {
+		if (!isFalling)
+			isJumping = b;
+	}
+
 	public void setVIT(int value) {
 		VIT = value;
 	}
@@ -106,27 +105,16 @@ public abstract class MainCharacter {
 	public void gravity() {
 		if (!isJumpingBoolean()) {
 			isFalling = true;
-			gravity.play();
+			launchGravity();
 		}
 	}
-
-	public void setIsJumping(boolean b) {
-		isJumping = b;
+	public void launchGravity() {
+		if(mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getYBOT() + 3)) && mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getYBOT() + 3)))
+			y.set(y.getValue()+3);
+		else
+			isFalling = false;
 	}
 	
-	public void initGravity() {
-		gravity = new Timeline();
-		gravity.setCycleCount(Timeline.INDEFINITE);
-		KeyFrame kf = new KeyFrame(Duration.seconds(rapidityOfGravity),(ev ->{
-			if(mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getYBOT() + 1)) && mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getYBOT() + 1)))
-				y.set(y.getValue()+1);
-			else {
-				isFalling = false;
-				gravity.stop();
-			}
-		}));
-		gravity.getKeyFrames().add(kf);
-	}
 	
 	public boolean isFallingBoolean() {
 		return isFalling;
@@ -135,25 +123,19 @@ public abstract class MainCharacter {
 	public void jump() {
 		if (!isFallingBoolean()){
 			isJumping = true;
- 			jump.play();
+ 			launchJump();
 		}
 	}
-	public void initJump() {
-		jump = new Timeline();
-		jumpBlock = 0;
-		jump.setCycleCount(Timeline.INDEFINITE);
-		KeyFrame kf = new KeyFrame(Duration.seconds(rapidityOfJump),(ev ->{
-			if (jumpBlock == jumpMAX*mapTile.getPIXELBLOCK() || !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 1)) || !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 1))) {
-				jumpBlock = 0;
-				isJumping = false;
-				gravity();
-				jump.stop();
-			}
-			else
-				y.set(getY()-1);
-			jumpBlock++;
-		}));
-		jump.getKeyFrames().add(kf);
+	public void launchJump() {
+		if (jumpBlock >= jumpMAX*mapTile.getPIXELBLOCK() || !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 3)) || !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 3))) {
+			jumpBlock = 0;
+			isJumping = false;
+			gravity();
+		}
+		else  {
+			y.set(getY()-3);
+			jumpBlock += 3;
+		}
 	}
 	
 	public boolean isJumpingBoolean() {

@@ -23,16 +23,26 @@ public class Environment {
     public void addEnemy(Enemy e) {
         ennemies.add(e);
         e.gravity();
-        e.initAttack(player, bfs);
+        while(e.isFallingBoolean())
+            e.gravity();
     }
 
     public void update() {
         bfs.launch();
         for (Enemy e : ennemies) {
-            if (!e.isAttacking() && bfs.isNear(e, e.getRangeForAttack()))
-                e.attack();
-            else if (!e.isAttacking())
+            if (e.isAttacking() || bfs.isNear(e, e.getRangeForAttack()))
+                e.goAttacking();
+            if (e.isAttacking())
+                e.attack(bfs);
+            else 
                 e.harmless();
+            if (e.isJumpingBoolean())
+                e.jump();
+            if (e.leftPressedBoolean())
+                e.moveLeft();
+            if (e.rightPressedBoolean())
+                e.moveRight();
+            e.gravity();
         }
     }
     public void updatePlayer() {
@@ -40,7 +50,7 @@ public class Environment {
 			player.moveLeft();
 		if (player.getRightPressedBoolean())
 			player.moveRight();
-		if (player.getUpPressedBoolean())
+		if (player.getUpPressedBoolean() || player.isJumpingBoolean())
 			player.jump();
         player.gravity();
     }
