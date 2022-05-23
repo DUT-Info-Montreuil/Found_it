@@ -9,7 +9,7 @@ import javafx.util.Duration;
 public abstract class Enemy extends MainCharacter{
     
     private int tps = 0;
-    private final static int tpsHarmlessRotate = 100;
+    private final static int tpsHarmlessRotate = 100, delayAttack = 150;
     private int rangeForAttack;
     private boolean isAttacking;
     private boolean left = false, right = false;
@@ -41,7 +41,7 @@ public abstract class Enemy extends MainCharacter{
         return left;
     }
 
-    public void attack(BFS bfs) {
+    public void attack(Player p,BFS bfs) {
         this.bfs = bfs;
         if (!isAlive() || !bfs.isNear(this, getRangeForAttack()))
             isAttacking = false;
@@ -57,6 +57,11 @@ public abstract class Enemy extends MainCharacter{
                 setRight(false);
             if (!bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getYBOT())))
                 setLeft(false);
+            if (isNear(p) && tps >= delayAttack) {
+                p.takeDamage(getAtt());
+                tps = 0;
+            }
+            tps++;
 	}
 
     public boolean isAttacking() {

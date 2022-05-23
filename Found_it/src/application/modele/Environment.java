@@ -33,7 +33,7 @@ public class Environment {
             if (bfs.isNear(e, e.getRangeForAttack()))
                 e.goAttacking();
             if (e.isAttacking())
-                e.attack(bfs);
+                e.attack(player, bfs);
             else 
                 e.harmless();
             if (e.isJumpingBoolean() || e instanceof Slime)

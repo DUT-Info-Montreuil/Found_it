@@ -13,6 +13,7 @@ public abstract class MainCharacter {
 	private boolean isFalling = false, isJumping = false;
 	private IntegerProperty hp;
 	private IntegerProperty dx;
+	private int rangeAttack = 5;
 	
 	public MainCharacter(int x,int y, TileMap map, int att, int pv, int jumpMax) {
 		this.x = new SimpleIntegerProperty(x);
@@ -147,4 +148,25 @@ public abstract class MainCharacter {
     public void takeDamage(int damage) {
     	hp.set(hp.getValue() - damage);
     }
+
+	public int getAtt() {
+		return att;
+	}
+
+	private int valAbs(int a) {
+		if (a < 0)
+			return -a;
+		return a;
+	}
+
+	public boolean isNearX(MainCharacter m) {
+		return valAbs(getX() - m.getXRight()) < rangeAttack || valAbs(getXRight() - m.getX()) < rangeAttack;
+	}
+	public boolean isNearY(MainCharacter m) {
+		return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
+	}
+
+	public boolean isNear(MainCharacter m) {
+		return isNearX(m) && isNearY(m);
+	}
 }
