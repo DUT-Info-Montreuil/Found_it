@@ -14,8 +14,7 @@ public class ClickManager implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent e) {
-        if (!player.isInInventory() && player.getPelle() != null)
-            player.getPelle().dig((int)e.getX(), (int)e.getY());
+            player.useTool((int)e.getX(), (int)e.getY());
     }
 
 }

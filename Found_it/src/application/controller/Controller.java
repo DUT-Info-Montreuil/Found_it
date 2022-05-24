@@ -17,6 +17,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Camera;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -66,8 +67,7 @@ public class Controller  implements Initializable{
 		gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.014),(ev ->{
-			if (!player.isInInventory())
-				e.updatePlayer();
+			e.updatePlayer();
 			e.update();
 		}));
 		gameLoop.getKeyFrames().add(kf);

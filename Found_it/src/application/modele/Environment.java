@@ -46,11 +46,13 @@ public class Environment {
         }
     }
     public void updatePlayer() {
+        if (!player.isInInventory()) {
         if (player.getLeftPressedBoolean())
 			player.moveLeft();
 		if (player.getRightPressedBoolean())
 			player.moveRight();
-		if (player.getUpPressedBoolean() || player.isJumpingBoolean())
+        }
+            if (player.getUpPressedBoolean() || player.isJumpingBoolean())
 			player.jump();
         player.gravity();
     }

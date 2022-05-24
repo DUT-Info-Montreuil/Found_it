@@ -7,14 +7,14 @@ public class Player extends MainCharacter {
 		
 	private boolean leftPressed, rightPressed, upPressed;
 	private BooleanProperty inInventory;
-	private Pelle pelle;
 	private final static int jumpMax = 4;
+	private Tool hand;
 	
 	public Player(int x,int y, TileMap map, int att, int pv, int speed) {
 		super(x,y,map, att, pv, jumpMax);
 		setVIT(speed);
 		inInventory = new SimpleBooleanProperty(false);
-		pelle = new Pelle(map, 1, this);
+		hand = new Pelle(map, 1, this);
 	}
 	
 	public void stopAction() {
@@ -49,17 +49,25 @@ public class Player extends MainCharacter {
 	public BooleanProperty isInInventoryProperty() {
 		return inInventory;
 	}
-	public Pelle getPelle() {
-		return pelle;
-	}
-	public void setPelle(Pelle p) {
-		pelle = p;
-	}
+
 	public void setDirectionnalX() {
 		if (!rightPressed && leftPressed)
 			super.setDirectionnalX(-1);
 		else if (rightPressed && !leftPressed)
 			super.setDirectionnalX(1);
+	}
+
+	public Tool getTools() {
+		return hand;
+	}
+
+	public void setTools(Tool t) {
+		hand = t;
+	}
+
+	public void useTool(int x, int y) {
+		if (hand != null)
+			hand.use(x,y);
 	}
 	
 	

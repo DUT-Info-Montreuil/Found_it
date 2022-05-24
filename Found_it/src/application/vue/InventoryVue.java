@@ -4,7 +4,6 @@ package application.vue;
 import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -41,10 +40,10 @@ public class InventoryVue {
     public void linkInventory() {
         inventory.visibleProperty().bind(player.isInInventoryProperty());
         naked.setOnMouseClicked(event -> {
-            player.setPelle(null);
+            player.setTools(null);
         });
         pickaxe.setOnMouseClicked(event -> {
-            player.setPelle(new Pelle(map, 1, player));
+            player.setTools(new Pelle(map, 1, player));
         });
         
     }
