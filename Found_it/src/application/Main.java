@@ -1,18 +1,14 @@
 package application;
  
-import java.nio.file.Paths;
  
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
  
 public class Main extends Application {
- 
-private MediaPlayer mediaPlayer;
  
 @Override
 public void start(Stage primaryStage) {
