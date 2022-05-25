@@ -150,9 +150,6 @@ public abstract class MainCharacter {
     public void takeDamage(int damage) {
     	hp.set(hp.getValue() - damage);
     }
-<<<<<<< HEAD
-	
-=======
 
 	public int getAtt() {
 		return att;
@@ -172,5 +169,4 @@ public abstract class MainCharacter {
 	public boolean isNear(MainCharacter m) {
 		return isNearX(m) && isNearY(m);
 	}
->>>>>>> featureAttack
 }
