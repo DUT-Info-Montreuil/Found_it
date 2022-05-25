@@ -12,7 +12,7 @@ public class MapVue {
 	
 	private Image sky = new Image("application/vue/tilset/sky.png");
 	private Image grass = new Image("application/vue/tilset/grass.png");
-	private Image river = new Image("application/vue/tilset/river.png");
+	private Image river = new Image("application/vue/tilset/grassfond.png");
 	private Image dirt = new Image("application/vue/tilset/dirt.png");
 	
 	public MapVue(TilePane mapTilePane, TileMap mapTileMap) {

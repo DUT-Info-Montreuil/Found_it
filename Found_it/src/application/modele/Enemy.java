@@ -1,19 +1,15 @@
 package application.modele;
 
 import application.modele.algo.BFS;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 
 
 public abstract class Enemy extends MainCharacter{
     
     private int tps = 0;
-    private final static int tpsHarmlessRotate = 100;
+    private final static int tpsHarmlessRotate = 100, delayAttack = 150;
     private int rangeForAttack;
     private boolean isAttacking;
     private boolean left = false, right = false;
-    private BFS bfs;
 
     public Enemy (int x, int y, TileMap map, int att, int pv, int range, int jumpMax) {
         super(x, y, map, att, pv, jumpMax);
@@ -41,8 +37,7 @@ public abstract class Enemy extends MainCharacter{
         return left;
     }
 
-    public void attack(BFS bfs) {
-        this.bfs = bfs;
+    public void attack(Player p,BFS bfs) {
         if (!isAlive() || !bfs.isNear(this, getRangeForAttack()))
             isAttacking = false;
         else {
@@ -57,6 +52,11 @@ public abstract class Enemy extends MainCharacter{
                 setRight(false);
             if (!bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getYBOT())))
                 setLeft(false);
+            if (isNear(p) && tps >= delayAttack) {
+                giveDamage(p);
+                tps = 0;
+            }
+            tps++;
 	}
 
     public boolean isAttacking() {
@@ -83,6 +83,11 @@ public abstract class Enemy extends MainCharacter{
         tps++;
         gravity();
 	}
+
+    public void giveDamage(MainCharacter m) {
+        m.takeDamage(getAtt());
+    }
+
 
 
 

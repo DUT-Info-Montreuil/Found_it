@@ -6,13 +6,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 public abstract class MainCharacter {
 
 	private IntegerProperty x, y;
-	private final int PIXELCHARACTER = 32 - 2;
+	private final int PIXELCHARACTER = 32 - 4;
 	private int VIT, att;
 	protected TileMap mapTile;
 	private int jumpBlock = 0, jumpMAX;
 	private boolean isFalling = false, isJumping = false;
 	private IntegerProperty hp;
 	private IntegerProperty dx;
+	private int rangeAttack = 5;
 	
 	public MainCharacter(int x,int y, TileMap map, int att, int pv, int jumpMax) {
 		this.x = new SimpleIntegerProperty(x);
@@ -121,7 +122,9 @@ public abstract class MainCharacter {
 		}
 	}
 	public void launchJump() {
-		if (jumpBlock >= jumpMAX*mapTile.getPIXELBLOCK() - 1 || !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 3)) || !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 3))) {
+		if (jumpBlock >= jumpMAX*mapTile.getPIXELBLOCK() - 1 
+		|| !mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getY() - 3)) 
+		|| !mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getY() - 3))) {
 			jumpBlock = 0;
 			isJumping = false;
 			gravity();
@@ -147,5 +150,27 @@ public abstract class MainCharacter {
     public void takeDamage(int damage) {
     	hp.set(hp.getValue() - damage);
     }
+<<<<<<< HEAD
 	
+=======
+
+	public int getAtt() {
+		return att;
+	}
+
+
+	public boolean isNearX(MainCharacter m) {
+		return Math.abs(getX() - m.getXRight()) < rangeAttack 
+			|| Math.abs(getXRight() - m.getX()) < rangeAttack
+			|| (getXRight() >= m.getXRight() && getX() <= m.getXRight()) 
+			|| (getXRight() >= m.getX() && getX() <= m.getX());
+	}
+	public boolean isNearY(MainCharacter m) {
+		return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
+	}
+
+	public boolean isNear(MainCharacter m) {
+		return isNearX(m) && isNearY(m);
+	}
+>>>>>>> featureAttack
 }

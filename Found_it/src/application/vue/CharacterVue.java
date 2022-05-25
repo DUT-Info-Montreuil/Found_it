@@ -14,22 +14,17 @@ public class CharacterVue {
 	private Pane mapPane;
 	private MainCharacter c;
 	private ImageView character;
-	private ImageView tools;
 
 	private Image characterRight;
 	private Image characterLeft;
 
-	private final Image pickaxeRight = new Image("application/vue/tilset/pickaxe.png");
-	private final Image pickaxeLeft = new Image("application/vue/tilset/pickaxeReverse.png");
 	
 	public CharacterVue(Pane mapPane, Player p) {
 		this.mapPane = mapPane;
 		c = p;
 		initImageCharacter();
 		addCharacterInMap();
-		addToolsInMap();
 		linkCharacter();
-		linkTool();
 		new InterfacePlayerVue(p, mapPane);
 	}
 
@@ -60,10 +55,6 @@ public class CharacterVue {
 	private void addCharacterInMap() {
 		mapPane.getChildren().add(character);
 	}
-	private void addToolsInMap() {
-		tools = new ImageView();
-		mapPane.getChildren().add(tools);
-	}
 	
 	public ImageView getCharacter() {
 		return character;
@@ -71,9 +62,6 @@ public class CharacterVue {
 	
 	public void editCharacterImage(Image i) {
 		character.setImage(i);
-	}
-	public void editToolsImage(Image i) {
-		tools.setImage(i);
 	}
 	
 	private void linkCharacter() {
@@ -87,18 +75,6 @@ public class CharacterVue {
 		});
 	}
 
-
-	public void linkTool() {
-		tools.layoutXProperty().bind(c.getXProperty());
-		tools.layoutYProperty().bind(c.getYProperty());
-		tools.setY(10);
-		c.getDirectionnalXProperty().addListener((obs,old,nouv)-> {
-			if (c.getDirectionnalX() == - 1)
-				character.setImage(characterLeft);	
-			else
-				character.setImage(characterRight);
-		});
-	}
 
 	// public void linkPlayer(MainCharacter p) {
 	// 	ChangeListener<Number> obs1 = 
