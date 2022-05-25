@@ -1,6 +1,7 @@
 package application.controller;
 
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import application.modele.Enemy;
@@ -20,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class Controller  implements Initializable{
@@ -31,6 +34,7 @@ public class Controller  implements Initializable{
 	private KeyManager keyControl;
 	private ClickManager clickControl;
 	private Environment e;
+	private MediaPlayer mediaPlayer;
 	
 	@FXML
 	private TilePane mapTilePane;
@@ -41,6 +45,7 @@ public class Controller  implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		music();
 		mapTile = new TileMap(60,34);
 		maps = new MapVue(mapTilePane, mapTile);
 		player = new Player(0, 800, mapTile,0,100,2);
@@ -72,6 +77,12 @@ public class Controller  implements Initializable{
 		}));
 		gameLoop.getKeyFrames().add(kf);
 	}
+	public void music() {
+		String s = "/home/etudiants/info/nramirez/prive/Found_it/Found_it/src/application/music.mp3";
+		Media media = new Media(Paths.get(s).toUri().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.play();
+		}
 	
 
 	
