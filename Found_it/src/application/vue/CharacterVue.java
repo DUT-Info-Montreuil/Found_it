@@ -38,16 +38,16 @@ public class CharacterVue {
 	
 	public void initImageCharacter() {
 		if (c instanceof Player) {
-			characterRight = new Image("application/vue/tilset/PersonnageMario.png");
-			characterLeft = new Image("application/vue/tilset/PersonnageMarioReverse.png");;
+			characterRight = new Image("application/vue/character/PersonnageMario.png");
+			characterLeft = new Image("application/vue/character/PersonnageMarioReverse.png");;
 		}
 		if (c instanceof Zombie) {
-			characterRight = new Image("application/vue/tilset/zombie.png");
-			characterLeft = new Image("application/vue/tilset/zombieReverse.png");
+			characterRight = new Image("application/vue/ennemies/zombie.png");
+			characterLeft = new Image("application/vue/ennemies/zombieReverse.png");
 		}
 		if (c instanceof Slime) {
-			characterRight = new Image("application/vue/tilset/slime.png");
-			characterLeft = new Image("application/vue/tilset/slime.png");
+			characterRight = new Image("application/vue/ennemies/slime.png");
+			characterLeft = new Image("application/vue/ennemies/slime.png");
 		}
 		character = new ImageView(characterRight);
 	}
