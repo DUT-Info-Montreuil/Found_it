@@ -15,9 +15,6 @@ public class CharacterVue {
 	private MainCharacter c;
 	private ImageView character;
 
-	private Image characterRight;
-	private Image characterLeft;
-
 	
 	public CharacterVue(Pane mapPane, Player p) {
 		this.mapPane = mapPane;
@@ -38,18 +35,14 @@ public class CharacterVue {
 	
 	public void initImageCharacter() {
 		if (c instanceof Player) {
-			characterRight = new Image("application/vue/tilset/PersonnageMario.png");
-			characterLeft = new Image("application/vue/tilset/PersonnageMarioReverse.png");;
+			character = new ImageView(new Image("application/vue/tilset/PersonnageMario.png"));
 		}
 		if (c instanceof Zombie) {
-			characterRight = new Image("application/vue/tilset/zombie.png");
-			characterLeft = new Image("application/vue/tilset/zombieReverse.png");
+			character = new ImageView(new Image("application/vue/tilset/zombie.png"));
 		}
 		if (c instanceof Slime) {
-			characterRight = new Image("application/vue/tilset/slime.png");
-			characterLeft = new Image("application/vue/tilset/slime.png");
+			character = new ImageView(new Image("application/vue/tilset/slime.png"));
 		}
-		character = new ImageView(characterRight);
 	}
 
 	private void addCharacterInMap() {
@@ -67,12 +60,7 @@ public class CharacterVue {
 	private void linkCharacter() {
 		character.translateXProperty().bind(c.getXProperty());
 		character.translateYProperty().bind(c.getYProperty());
-		c.getDirectionnalXProperty().addListener((obs,old,nouv)-> {
-			if (c.getDirectionnalX() == - 1)
-				character.setImage(characterLeft);	
-			else
-				character.setImage(characterRight);
-		});
+		c.getDirectionnalXProperty().addListener((obs,old,nouv)-> {character.setScaleX(c.getDirectionnalX());});
 	}
 
 

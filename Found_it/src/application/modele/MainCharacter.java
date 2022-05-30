@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public abstract class MainCharacter {
 
 	private IntegerProperty x, y;
-	private final int PIXELCHARACTER = 32 - 4;
+	private final static int PIXELCHARACTER = 32 - 4;
 	private int VIT, att;
 	protected TileMap mapTile;
 	private int jumpBlock = 0, jumpMAX;
@@ -104,7 +104,8 @@ public abstract class MainCharacter {
 		}
 	}
 	public void launchGravity() {
-		if(mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getYBOT() + 3)) && mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getYBOT() + 3)))
+		if(mapTile.wasTransparent(mapTile.getCodeTuile(getX(), getYBOT() + 3)) 
+		&& mapTile.wasTransparent(mapTile.getCodeTuile(getXRight(), getYBOT() + 3)))
 			y.set(y.getValue()+3);
 		else
 			isFalling = false;

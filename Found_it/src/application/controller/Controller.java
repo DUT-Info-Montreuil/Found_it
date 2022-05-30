@@ -82,7 +82,7 @@ public class Controller  implements Initializable{
 		Media media = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
-		}
+	}
 	
 
 	
