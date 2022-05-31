@@ -30,12 +30,12 @@ public class InventoryVue {
     private ImageView specialSword;
 
     private final Image inventoryPicture = new Image("application/vue/logoInventory/InventoryIcon.png");
-    private final Image woodPicture = new Image("application/vue/resources/wood.png");
-    private final Image woodPickaxePicture = new Image("application/vue/equipments/woodPickaxe.png");
+    //private final Image woodPicture = new Image("application/vue/resources/wood.png");
+    private final Image woodPickaxePicture = new Image("application/vue/equipments/woodPickAxe.png");
     private final Image woodAxePicture = new Image("application/vue/equipments/woodAxe.png");
     private final Image woodSwordPicture = new Image("application/vue/weapons/woodSword.png");
     
-    private final Image ironPicture = new Image ("application/vue/resources/iron.png");
+    //private final Image ironPicture = new Image ("application/vue/resources/iron.png");
     //private final Image ironPickaxePicture = new Image("application/vue/equipments/ironPickaxe.png");
     //private final Image ironAxePicture = new Image("application/vue/equipments/ironAxe.png");
     //private final Image ironSwordPicture = new Image("");
