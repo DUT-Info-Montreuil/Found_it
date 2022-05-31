@@ -17,7 +17,7 @@ public class InventoryVue {
     private ImageView naked;
     private ImageView pickaxe;
 
-    private final Image nakedPicture = new Image("application/vue/logo/naked.png");
+    private final Image nakedPicture = new Image("application/vue/logo/fist.png");
     private final Image pickaxePicture = new Image("application/vue/tilset/pickaxe.png");
 
     public InventoryVue(Pane pane, Player p, TileMap map) {

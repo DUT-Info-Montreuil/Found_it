@@ -78,7 +78,7 @@ public class Controller  implements Initializable{
 		gameLoop.getKeyFrames().add(kf);
 	}
 	public void music() {
-		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
+		String s = "/home/etudiants/info/nramirez/prive/Found_it/Found_it/src/application/music.mp3";
 		Media media = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
