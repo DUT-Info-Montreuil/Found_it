@@ -31,6 +31,10 @@ public abstract class MainCharacter {
 		return y;
 	}
 
+	public int getRangeForAttack() {
+		return rangeAttack;
+	}
+
 	public void setX(int value) {
 		x.set(value);
 	}

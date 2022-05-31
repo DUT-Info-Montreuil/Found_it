@@ -36,7 +36,7 @@ public class Environment {
 
             //e.agir();
 
-            if (bfs.isNear(e, e.getRangeForAttack()))
+            if (bfs.isNear(e, e.getRangeDiffBlocMax()))
                 e.goAttacking();
             if (e.isAttacking())
                 e.attack(player, bfs);

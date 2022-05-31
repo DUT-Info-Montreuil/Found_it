@@ -7,19 +7,16 @@ public abstract class Enemy extends MainCharacter{
     
     private int tps = 0;
     private final static int tpsHarmlessRotate = 100, delayAttack = 150;
-    private int rangeForAttack;
     private boolean isAttacking;
     private boolean left = false, right = false;
+    private int rangeDiffBlockMax;
 
     public Enemy (int x, int y, TileMap map, int att, int pv, int range, int jumpMax) {
         super(x, y, map, att, pv, jumpMax);
-        rangeForAttack = range;
+        rangeDiffBlockMax = range;
         isAttacking = false;
     }
 
-    public int getRangeForAttack() {
-        return rangeForAttack;
-    }
 
     public void goAttacking() {
         isAttacking = true;
@@ -36,9 +33,12 @@ public abstract class Enemy extends MainCharacter{
     public boolean leftPressedBoolean() {
         return left;
     }
+    public int getRangeDiffBlocMax() {
+        return rangeDiffBlockMax;
+    }
 
     public void attack(Player p,BFS bfs) {
-        if (!isAlive() || !bfs.isNear(this, getRangeForAttack()))
+        if (!isAlive() || !bfs.isNear(this, getRangeDiffBlocMax()))
             isAttacking = false;
         else {
             if (bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getYBOT()))) 
