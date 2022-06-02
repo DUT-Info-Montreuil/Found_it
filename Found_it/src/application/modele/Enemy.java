@@ -93,6 +93,22 @@ public abstract class Enemy extends MainCharacter{
     }
 
 
+    public void update(Player player, BFS bfs) {
+        if (bfs.isNear(this, getRangeDiffBlocMax()))
+                goAttacking();
+            if (isAttacking())
+                attack(player, bfs);
+            else 
+                harmless();
+            if (isJumpingBoolean())
+                jump();
+            if (leftPressedBoolean())
+                moveLeft();
+            if (rightPressedBoolean())
+                moveRight();
+            gravity();
+    }
+
     public int getTps() {
         return tps;
     }

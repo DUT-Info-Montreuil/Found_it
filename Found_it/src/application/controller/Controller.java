@@ -76,13 +76,12 @@ public class Controller  implements Initializable{
 		gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.014),(ev ->{
-			e.updatePlayer();
 			e.update();
 		}));
 		gameLoop.getKeyFrames().add(kf);
 	}
 	public void music() {
-		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
+		String s = "C:/Users/Megaport/Documents/SAE dev/GITHUB/Found_it/Found_it/src/application/music.mp3";
 		Media media = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();

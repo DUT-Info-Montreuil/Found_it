@@ -70,6 +70,18 @@ public class Player extends MainCharacter {
 		if (hand != null)
 			hand.use(x,y);
 	}
+
+	public void update() {
+		if (!isInInventory()) {
+			if (getLeftPressedBoolean())
+				moveLeft();
+			if (getRightPressedBoolean())
+				moveRight();
+			}
+			if (getUpPressedBoolean() || isJumpingBoolean())
+				jump();
+			gravity();
+	}
 	
 	
 }

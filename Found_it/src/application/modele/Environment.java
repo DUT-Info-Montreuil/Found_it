@@ -35,40 +35,15 @@ public class Environment {
     }
 
     public void update() {
+        player.update();
         bfs.launch();
         for (Enemy e : ennemies) {
-
-            //e.agir();
-
-            if (bfs.isNear(e, e.getRangeDiffBlocMax()))
-                e.goAttacking();
-            if (e.isAttacking())
-                e.attack(player, bfs);
-            else 
-                e.harmless();
-            if (e.isJumpingBoolean() || e instanceof Slime)
-                e.jump();
-            if (e.leftPressedBoolean())
-                e.moveLeft();
-            if (e.rightPressedBoolean())
-                e.moveRight();
-            e.gravity();
+            e.update(player, bfs);
         }
         for (Projectile p : listProjectile)
             p.update(p.getTarget());
     }
     
-    public void updatePlayer() {
-        if (!player.isInInventory()) {
-        if (player.getLeftPressedBoolean())
-			player.moveLeft();
-		if (player.getRightPressedBoolean())
-			player.moveRight();
-        }
-            if (player.getUpPressedBoolean() || player.isJumpingBoolean())
-			player.jump();
-        player.gravity();
-    }
 
     public void addProjectile(Projectile projectile) {
         listProjectile.add(projectile);
