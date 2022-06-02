@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Projectile {
     
     private IntegerProperty x, y;
+    private int yTarget;
     private TileMap mapTile;
     private int range, distanceTravelled;
     private int dx, dy;
@@ -16,13 +17,15 @@ public class Projectile {
         mapTile = map;
         range = launcher.getRangeForAttack() * mapTile.getPIXELBLOCK();
         this.target = target;
+        if (getX() - target.getX() <= 0) dx = 1;
+        else dx = -1;
+        if (getY() - target.getY() <= 0) dy = 1;
+        else dy = -1;
+        yTarget = target.getY();
     }
 
     public int getX() {
         return x.getValue();
-    }
-    public MainCharacter getTarget() {
-        return target;
     }
     public int getY() {
         return y.getValue();
@@ -34,11 +37,10 @@ public class Projectile {
         return y;
     }
 
-    public void update(MainCharacter target) {
+    public void update() {
         if (distanceTravelled <= range) {
-            if (x.getValue() - target.getX() != 0)
-                x.set(getX()+dx);
-            if (y.getValue() - target.getY() != 0)
+            x.set(getX()+dx);
+            if (y.getValue() - yTarget != 0)
                 y.set(getY() + dy);
         }
         else {

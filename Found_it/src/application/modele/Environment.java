@@ -41,7 +41,7 @@ public class Environment {
             e.update(player, bfs);
         }
         for (Projectile p : listProjectile)
-            p.update(p.getTarget());
+            p.update();
     }
     
 
