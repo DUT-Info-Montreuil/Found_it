@@ -88,6 +88,10 @@ public abstract class Enemy extends MainCharacter{
         m.takeDamage(getAtt());
     }
 
+    public void takeDamage(Enemy e){
+        e.takeDamage(getAtt());
+    }
+
 
 
 
