@@ -24,6 +24,7 @@ public abstract class MainCharacter {
 		this.att = att;
 		this.hp = new SimpleIntegerProperty(pv);
 		dx = new SimpleIntegerProperty(1);
+		environment = env;
 	}
 	public IntegerProperty getXProperty() {
 		return x;

@@ -54,6 +54,8 @@ public class Environment {
                 e.moveRight();
             e.gravity();
         }
+        for (Projectile p : listProjectile)
+            p.update(p.getTarget());
     }
     
     public void updatePlayer() {
