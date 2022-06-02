@@ -1,8 +1,5 @@
 package application.modele;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import application.modele.algo.BFS;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,17 +8,24 @@ public class Environment {
     
     private Player player;
     private ObservableList<Enemy> ennemies;
+    private ObservableList<Projectile> listProjectile;
     private TileMap map;
     private BFS bfs;
 
-    public Environment(TileMap mapTile , Player p) {
-        player = p;
+    public Environment(TileMap mapTile) {
         ennemies = FXCollections.observableArrayList();
+        listProjectile = FXCollections.observableArrayList();
         map = mapTile;
+    }
+    public void setPlayer(Player p) {
+        player = p;
         bfs = new BFS(player, map, 4);
     }
     public ObservableList<Enemy> getListEnemiesProperty() {
         return ennemies;
+    }
+    public ObservableList<Projectile> getListProjectileProperty() {
+        return listProjectile;
     }
     public void addEnemy(Enemy e) {
         ennemies.add(e);
@@ -64,4 +68,8 @@ public class Environment {
         player.gravity();
     }
 
+    public void addProjectile(Projectile projectile) {
+        listProjectile.add(projectile);
+    }
+ 
 }

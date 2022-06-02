@@ -10,11 +10,12 @@ public class Player extends MainCharacter {
 	private final static int jumpMax = 4;
 	private Tool hand;
 	
-	public Player(int x,int y, TileMap map, int att, int pv, int speed) {
-		super(x,y,map, att, pv, jumpMax);
+	public Player(int x,int y, TileMap map, int att, int pv, int speed,Environment env) {
+		super(x,y,map, att, pv, jumpMax,env);
 		setVIT(speed);
 		inInventory = new SimpleBooleanProperty(false);
 		hand = new Pelle(map, 1, this);
+		env.setPlayer(this);
 	}
 	
 	public void stopAction() {

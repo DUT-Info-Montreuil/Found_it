@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class MainCharacter {
 
+	private static Environment environment;
 	private IntegerProperty x, y;
 	private final static int PIXELCHARACTER = 32 - 4;
 	private int VIT, att;
@@ -15,7 +16,7 @@ public abstract class MainCharacter {
 	private IntegerProperty dx;
 	private int rangeAttack = 5;
 	
-	public MainCharacter(int x,int y, TileMap map, int att, int pv, int jumpMax) {
+	public MainCharacter(int x,int y, TileMap map, int att, int pv, int jumpMax,Environment env) {
 		this.x = new SimpleIntegerProperty(x);
 		this.y = new SimpleIntegerProperty(y);
 		mapTile = map;
@@ -174,4 +175,8 @@ public abstract class MainCharacter {
 	public boolean isNear(MainCharacter m) {
 		return isNearX(m) && isNearY(m);
 	}
+
+	public Environment getEnvironment() {
+        return environment;
+    }
 }

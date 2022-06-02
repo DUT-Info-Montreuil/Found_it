@@ -11,8 +11,8 @@ public abstract class Enemy extends MainCharacter{
     private boolean left = false, right = false;
     private int rangeDiffBlockMax;
 
-    public Enemy (int x, int y, TileMap map, int att, int pv, int range, int jumpMax) {
-        super(x, y, map, att, pv, jumpMax);
+    public Enemy (int x, int y, TileMap map, int att, int pv, int range, int jumpMax,Environment env) {
+        super(x, y, map, att, pv, jumpMax,env);
         rangeDiffBlockMax = range;
         isAttacking = false;
     }
@@ -52,10 +52,7 @@ public abstract class Enemy extends MainCharacter{
                 setRight(false);
             if (!bfs.goLeft(mapTile.getXCharacterInMap(getXRight()), mapTile.getYIndiceHeight(getYBOT())))
                 setLeft(false);
-            if (isNear(p) && tps >= delayAttack) {
-                giveDamage(p);
-                tps = 0;
-            }
+            attacking(p);
             tps++;
 	}
 
@@ -84,10 +81,27 @@ public abstract class Enemy extends MainCharacter{
         gravity();
 	}
 
+    public void attacking(MainCharacter p) {
+        if (isNear(p) && tps >= delayAttack) {
+            giveDamage(p);
+            tps = 0;
+        }
+    }
+
     public void giveDamage(MainCharacter m) {
         m.takeDamage(getAtt());
     }
 
+
+    public int getTps() {
+        return tps;
+    }
+    public void setTps(int value){
+        tps = value;
+    }
+    public int getDelayAttack() {
+        return delayAttack;
+    }
 
 
 

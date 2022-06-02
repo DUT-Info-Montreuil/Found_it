@@ -4,6 +4,7 @@ package application.vue;
 import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.Slime;
+import application.modele.Squeleton;
 import application.modele.Zombie;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,6 +44,8 @@ public class CharacterVue {
 		if (c instanceof Slime) {
 			character = new ImageView(new Image("application/vue/tilset/slime.png"));
 		}
+		if (c instanceof Squeleton)
+			character = new ImageView(new Image("application/vue/tilset/squeleton.png"));
 	}
 
 	private void addCharacterInMap() {
