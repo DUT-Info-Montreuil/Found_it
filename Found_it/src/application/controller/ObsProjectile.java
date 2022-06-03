@@ -17,9 +17,11 @@ public class ObsProjectile implements ListChangeListener<Projectile>{
     @Override
     public void onChanged(Change<?extends Projectile> c) {
         while (c.next()) {
-            for (Projectile p : c.getAddedSubList()) {
+            for (Projectile p : c.getAddedSubList())
                 new ProjectileVue(p,mapPane);
-            }
+            for (Projectile p : c.getRemoved())
+                mapPane.getChildren().remove(mapPane.lookup("#" + p.getId()));
+
         }
     }
 }

@@ -3,12 +3,8 @@ package application;
  
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Camera;
-import javafx.scene.ParallelCamera;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
  
 public class Main extends Application {

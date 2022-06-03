@@ -17,22 +17,42 @@ public class ProjectileVue {
         mapPane = map;
         initImageProjectile();
         addCharacterInMap();
-        linkCharacter();
+        linkProjectile();
     }
 
     public void initImageProjectile() {
       if (p instanceof Arrow) {
         projectile = new ImageView(new Image("application/vue/tilset/arrow.png"));
       }
+      projectile.setRotate(rotationProjectile());
 	  }
     private void addCharacterInMap() {
+      projectile.setId(p.getId());
 		  mapPane.getChildren().add(projectile);
 	  }
 
-    private void linkCharacter() {
+    private void linkProjectile() {
       projectile.translateXProperty().bind(p.getXProperty());
       projectile.translateYProperty().bind(p.getYProperty());
+      p.getDyProperty().addListener((obs,old,nouv)-> {
+        projectile.setRotate(rotationProjectile());
+      });
+
 	  }
+    private int rotationProjectile() {
+      int dx, dy;
+      if (p.getDX() < 0)
+        dx = -90;
+      else
+        dx = 90;
+      if (p.getDY() < 0)
+        dy = (-45) * dx/90;
+      else if (p.getDY() > 0)
+        dy = 45 * dx/90;
+      else
+        dy = 0;
+      return dx+dy;
+    }
 
 
 }

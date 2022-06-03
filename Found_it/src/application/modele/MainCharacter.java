@@ -33,10 +33,6 @@ public abstract class MainCharacter {
 		return y;
 	}
 
-	public int getRangeForAttack() {
-		return rangeAttack;
-	}
-
 	public void setX(int value) {
 		x.set(value);
 	}
@@ -142,6 +138,10 @@ public abstract class MainCharacter {
 		}
 	}
 	
+	public void setRangeAttack(int value) {
+		rangeAttack = value;
+	}
+
 	public boolean isJumpingBoolean() {
 		return isJumping;
 	}
@@ -163,21 +163,25 @@ public abstract class MainCharacter {
 	}
 
 
-	public boolean isNearX(MainCharacter m) {
-		return Math.abs(getX() - m.getXRight()) < rangeAttack 
-			|| Math.abs(getXRight() - m.getX()) < rangeAttack
-			|| (getXRight() >= m.getXRight() && getX() <= m.getXRight()) 
-			|| (getXRight() >= m.getX() && getX() <= m.getX());
-	}
-	public boolean isNearY(MainCharacter m) {
-		return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
-	}
+	// public boolean isNearX(MainCharacter m) {
+	// 	return Math.abs(getX() - m.getXRight()) < rangeAttack 
+	// 		|| Math.abs(getXRight() - m.getX()) < rangeAttack
+	// 		|| (getXRight() >= m.getXRight() && getX() <= m.getXRight()) 
+	// 		|| (getXRight() >= m.getX() && getX() <= m.getX());
+	// }
+	// public boolean isNearY(MainCharacter m) {
+	// 	return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
+	// }
 
-	public boolean isNear(MainCharacter m) {
-		return isNearX(m) && isNearY(m);
-	}
+	// public boolean isNear(MainCharacter m) {
+	// 	return isNearX(m) && isNearY(m);
+	// }
 
 	public Environment getEnvironment() {
         return environment;
     }
+
+	public int getRangeAttack() {
+		return rangeAttack;
+	}
 }

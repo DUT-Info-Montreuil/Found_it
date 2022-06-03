@@ -14,7 +14,7 @@ public class Bow {
     }
 
     public void shoot(MainCharacter target) {
-        environment.addProjectile(new Arrow(user, target, mapTile));
+        environment.addProjectile(new Arrow(user, target, mapTile,environment));
     }
 
 }

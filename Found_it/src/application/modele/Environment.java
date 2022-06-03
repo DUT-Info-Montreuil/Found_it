@@ -37,16 +37,19 @@ public class Environment {
     public void update() {
         player.update();
         bfs.launch();
-        for (Enemy e : ennemies) {
+        for (Enemy e : ennemies)
             e.update(player, bfs);
-        }
-        for (Projectile p : listProjectile)
-            p.update();
+        for (int i = listProjectile.size() - 1 ; i >= 0 ; i--)
+            listProjectile.get(i).update();
     }
     
 
     public void addProjectile(Projectile projectile) {
         listProjectile.add(projectile);
+    }
+
+    public void removedProjectile(Projectile projectile) {
+        listProjectile.remove(projectile);
     }
  
 }

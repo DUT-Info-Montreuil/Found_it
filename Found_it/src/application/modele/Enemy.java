@@ -9,7 +9,7 @@ public abstract class Enemy extends MainCharacter{
     private final static int tpsHarmlessRotate = 100, delayAttack = 150;
     private boolean isAttacking;
     private boolean left = false, right = false;
-    private int rangeDiffBlockMax;
+    private int rangeDiffBlockMax, rangeForAttack;
 
     public Enemy (int x, int y, TileMap map, int att, int pv, int range, int jumpMax,Environment env) {
         super(x, y, map, att, pv, jumpMax,env);
@@ -17,6 +17,10 @@ public abstract class Enemy extends MainCharacter{
         isAttacking = false;
     }
 
+
+    public void setRangeForAttack(int value) {
+        rangeForAttack = value;
+    }
 
     public void goAttacking() {
         isAttacking = true;
@@ -118,6 +122,20 @@ public abstract class Enemy extends MainCharacter{
     public int getDelayAttack() {
         return delayAttack;
     }
+
+    public boolean isNearX(MainCharacter m) {
+		return Math.abs(getX() - m.getXRight()) < rangeForAttack 
+			|| Math.abs(getXRight() - m.getX()) < rangeForAttack
+			|| (getXRight() >= m.getXRight() && getX() <= m.getXRight()) 
+			|| (getXRight() >= m.getX() && getX() <= m.getX());
+	}
+	public boolean isNearY(MainCharacter m) {
+		return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
+	}
+
+	public boolean isNear(MainCharacter m) {
+		return isNearX(m) && isNearY(m);
+	}
 
 
 
