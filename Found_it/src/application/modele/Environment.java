@@ -30,6 +30,10 @@ public class Environment {
             e.gravity();
     }
 
+    public void removeEnemy(Enemy e){
+        ennemies.remove(e);
+    }
+
     public void update() {
         bfs.launch();
         for (Enemy e : ennemies) {
