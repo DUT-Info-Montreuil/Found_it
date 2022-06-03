@@ -1,6 +1,5 @@
 package application.controller;
 
-import application.modele.Arrow;
 import application.modele.Projectile;
 import application.vue.ProjectileVue;
 import javafx.collections.ListChangeListener;

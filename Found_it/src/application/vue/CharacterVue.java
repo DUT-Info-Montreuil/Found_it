@@ -56,9 +56,6 @@ public class CharacterVue {
 		return character;
 	}
 	
-	public void editCharacterImage(Image i) {
-		character.setImage(i);
-	}
 	
 	private void linkCharacter() {
 		character.translateXProperty().bind(c.getXProperty());
