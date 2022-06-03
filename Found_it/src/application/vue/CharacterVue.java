@@ -36,16 +36,16 @@ public class CharacterVue {
 	
 	public void initImageCharacter() {
 		if (c instanceof Player) {
-			character = new ImageView(new Image("application/vue/tilset/PersonnageMario.png"));
+			character = new ImageView(new Image("application/vue/character/PersonnageMario.png"));
 		}
 		if (c instanceof Zombie) {
-			character = new ImageView(new Image("application/vue/tilset/zombie.png"));
+			character = new ImageView(new Image("application/vue/ennemies/zombie.png"));
 		}
 		if (c instanceof Slime) {
-			character = new ImageView(new Image("application/vue/tilset/slime.png"));
+			character = new ImageView(new Image("application/vue/ennemies/slime.png"));
 		}
 		if (c instanceof Squeleton)
-			character = new ImageView(new Image("application/vue/tilset/squeleton.png"));
+			character = new ImageView(new Image("application/vue/ennemies/squeleton.png"));
 	}
 
 	private void addCharacterInMap() {
@@ -66,31 +66,4 @@ public class CharacterVue {
 		c.getDirectionnalXProperty().addListener((obs,old,nouv)-> {character.setScaleX(c.getDirectionnalX());});
 	}
 
-
-	// public void linkPlayer(MainCharacter p) {
-	// 	ChangeListener<Number> obs1 = 
-	// 			((obs,old,nouv)-> {
-	// 				if (p.getDirectionnalX() == - 1) {
-	// 					character.setImage(characterLeft);
-	// 					if (p.getPelle()!= null) 
-	// 						editToolsImage(pickaxeLeft);
-	// 					else
-	// 						editToolsImage(null);
-	// 					tools.setX(-8);
-	// 				}
-	// 				else {
-	// 					character.setImage(characterRight);
-	// 					if (p.getPelle()!= null)
-	// 						editToolsImage(pickaxeRight);
-	// 					else
-	// 						editToolsImage(null);
-	// 					tools.setX(25);			
-	// 				}
-	// 			}	
-	// 	);
-	// 	p.getDirectionnalXProperty().addListener(obs1);
-	// 	tools.setY(10);
-	// 	tools.layoutXProperty().bind(c.getXProperty());
-	// 	tools.layoutYProperty().bind(c.getYProperty());
-	// }
 }
