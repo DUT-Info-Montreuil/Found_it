@@ -37,6 +37,7 @@ public class Controller  implements Initializable{
 	private ClickManager clickControl;
 	private Environment e;
 	private MediaPlayer mediaPlayer;
+	private CharacterVue characterVue;
 	
 	@FXML
 	private TilePane mapTilePane;
@@ -52,7 +53,7 @@ public class Controller  implements Initializable{
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
 		player = new Player(0, 800, mapTile,0,100,2,e);
-		new CharacterVue(mapPane,player);
+		characterVue = new CharacterVue(mapPane,player);
 		new InventoryVue(mapPane, player, mapTile);
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
@@ -81,11 +82,7 @@ public class Controller  implements Initializable{
 		gameLoop.getKeyFrames().add(kf);
 	}
 	public void music() {
-<<<<<<< HEAD
 		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
-=======
-		String s = "/home/etudiants/info/jobrun/prive/S2/developpement_objet/Found_it/Found_it/src/application/music.mp3";
->>>>>>> FeatureMapLoader
 		Media media = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();

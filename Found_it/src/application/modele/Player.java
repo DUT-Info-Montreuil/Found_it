@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class Player extends MainCharacter {
 		
-	private boolean leftPressed, rightPressed, upPressed;
+	private boolean upPressed;
 	private BooleanProperty inInventory;
 	private final static int jumpMax = 4;
 	private Tool hand;
@@ -23,23 +23,11 @@ public class Player extends MainCharacter {
 		setRightPressed(false);
 		setUpPressed(false);
 	}
-	public void setLeftPressed(boolean b) {
-		leftPressed = b;
-	}
-	public void setRightPressed(boolean b) {
-		rightPressed = b;
-	}
 	public void setUpPressed(boolean b) {
 		upPressed = b;
 	}
 	public void openCloseInventory() {
 		inInventory.set(!inInventory.getValue());
-	}
-	public boolean getLeftPressedBoolean() {
-		return leftPressed;
-	}
-	public boolean getRightPressedBoolean() {
-		return rightPressed;
 	}
 	public boolean getUpPressedBoolean() {
 		return upPressed;
@@ -52,9 +40,9 @@ public class Player extends MainCharacter {
 	}
 
 	public void setDirectionnalX() {
-		if (!rightPressed && leftPressed)
+		if (!getRightPressed() && getLeftPressed())
 			super.setDirectionnalX(-1);
-		else if (rightPressed && !leftPressed)
+		else if (getRightPressed() && !getLeftPressed())
 			super.setDirectionnalX(1);
 	}
 
@@ -73,9 +61,9 @@ public class Player extends MainCharacter {
 
 	public void update() {
 		if (!isInInventory()) {
-			if (getLeftPressedBoolean())
+			if (getLeftPressed())
 				moveLeft();
-			if (getRightPressedBoolean())
+			if (getRightPressed())
 				moveRight();
 			}
 			if (getUpPressedBoolean() || isJumpingBoolean())

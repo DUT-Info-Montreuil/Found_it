@@ -11,7 +11,7 @@ public abstract class MainCharacter {
 	private int VIT, att;
 	protected TileMap mapTile;
 	private int jumpBlock = 0, jumpMAX;
-	private boolean isFalling = false, isJumping = false;
+	private boolean isFalling = false, isJumping = false,leftPressed = false, rightPressed = false;
 	private IntegerProperty hp;
 	private IntegerProperty dx;
 	private int rangeAttack = 5;
@@ -25,6 +25,18 @@ public abstract class MainCharacter {
 		this.hp = new SimpleIntegerProperty(pv);
 		dx = new SimpleIntegerProperty(1);
 		environment = env;
+	}
+	public void setLeftPressed (boolean value) {
+		leftPressed = value;
+	}
+	public void setRightPressed (boolean value) {
+		rightPressed = value;
+	}
+	public boolean getRightPressed() {
+		return rightPressed;
+	}
+	public boolean getLeftPressed() {
+		return leftPressed;
 	}
 	public IntegerProperty getXProperty() {
 		return x;
