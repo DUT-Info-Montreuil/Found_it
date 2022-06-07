@@ -71,7 +71,7 @@ public class Player extends MainCharacter {
 		else
 			if (isJumpingBoolean())
 				jump();
-			gravity();
+		gravity();
 	}
 	
 	

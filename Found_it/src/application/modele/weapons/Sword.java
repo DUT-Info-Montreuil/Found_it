@@ -2,7 +2,6 @@ package application.modele.weapons;
 
 import application.modele.Enemy;
 import application.modele.Environment;
-import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.TileMap;
 import application.modele.Tool;
