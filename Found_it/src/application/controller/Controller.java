@@ -48,7 +48,7 @@ public class Controller  implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		music();
+		// music();
 		mapTile = new TileMap(60,34);
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
@@ -66,9 +66,9 @@ public class Controller  implements Initializable{
 		e.getListEnemiesProperty().addListener(lObs);
 		ListChangeListener<Projectile> pObs = new ObsProjectile(mapPane);
 		e.getListProjectileProperty().addListener(pObs);
-		e.addEnemy(new Zombie (400, 400, mapTile, 10, 30,e));
-		e.addEnemy(new Slime (500, 150, mapTile, 10, 30,e));
-		e.addEnemy(new Squeleton(500, 150, mapTile, 10, 30,e));
+		e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
+		e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
+		e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
 		initGameLoop();
 		gameLoop.play();
 		
@@ -81,14 +81,13 @@ public class Controller  implements Initializable{
 		}));
 		gameLoop.getKeyFrames().add(kf);
 	}
-	public void music() {
-		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
-		Media media = new Media(Paths.get(s).toUri().toString());
-		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.play();
-	}
+	// public void music() {
+	// 	String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
+	// 	Media media = new Media(Paths.get(s).toUri().toString());
+	// 	mediaPlayer = new MediaPlayer(media);
+	// 	mediaPlayer.play();
+	// }
 	
-
 	
 	
 }

@@ -1,6 +1,7 @@
 package application.vue;
 
 
+import application.modele.Enemy;
 import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.Slime;
@@ -57,6 +58,7 @@ public class CharacterVue {
 		}
 		if (c instanceof Squeleton)
 			character = new ImageView(new Image("application/vue/ennemies/squeleton.png"));
+		character.setId(c.getId());
 	}
 
 	private void addCharacterInMap() {

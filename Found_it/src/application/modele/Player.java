@@ -65,8 +65,11 @@ public class Player extends MainCharacter {
 				moveLeft();
 			if (getRightPressed())
 				moveRight();
-			}
 			if (getUpPressedBoolean() || isJumpingBoolean())
+				jump();
+		}
+		else
+			if (isJumpingBoolean())
 				jump();
 			gravity();
 	}

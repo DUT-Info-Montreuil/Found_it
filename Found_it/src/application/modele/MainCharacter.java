@@ -15,6 +15,8 @@ public abstract class MainCharacter {
 	private IntegerProperty hp;
 	private IntegerProperty dx;
 	private int rangeAttack = 5;
+	private String id;
+	private static int cpt = 0;
 	
 	public MainCharacter(int x,int y, TileMap map, int att, int pv, int jumpMax,Environment env) {
 		this.x = new SimpleIntegerProperty(x);
@@ -25,6 +27,10 @@ public abstract class MainCharacter {
 		this.hp = new SimpleIntegerProperty(pv);
 		dx = new SimpleIntegerProperty(1);
 		environment = env;
+		id = "C"+cpt++;
+	}
+	public String getId() {
+		return id;
 	}
 	public void setLeftPressed (boolean value) {
 		leftPressed = value;
@@ -173,21 +179,6 @@ public abstract class MainCharacter {
 	public int getAtt() {
 		return att;
 	}
-
-
-	// public boolean isNearX(MainCharacter m) {
-	// 	return Math.abs(getX() - m.getXRight()) < rangeAttack 
-	// 		|| Math.abs(getXRight() - m.getX()) < rangeAttack
-	// 		|| (getXRight() >= m.getXRight() && getX() <= m.getXRight()) 
-	// 		|| (getXRight() >= m.getX() && getX() <= m.getX());
-	// }
-	// public boolean isNearY(MainCharacter m) {
-	// 	return (getYBOT() >= m.getYBOT() && getY() <= m.getYBOT()) || (getYBOT() >= m.getY() && getY() <= m.getY());
-	// }
-
-	// public boolean isNear(MainCharacter m) {
-	// 	return isNearX(m) && isNearY(m);
-	// }
 
 	public Environment getEnvironment() {
         return environment;

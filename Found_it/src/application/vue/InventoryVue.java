@@ -4,6 +4,7 @@ package application.vue;
 import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
+import application.modele.weapons.Sword;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -64,7 +65,10 @@ public class InventoryVue {
             player.setTools(null);
         });
         woodPickaxe.setOnMouseClicked(event -> {
-            player.setTools(new Pelle(map, 1, player));
+            player.setTools(new Pelle(map, 32, player));
+        });
+        woodSword.setOnMouseClicked(event -> {
+            player.setTools(new Sword(map, 40, 32, player));
         });
         
     }

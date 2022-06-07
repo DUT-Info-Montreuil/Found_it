@@ -22,6 +22,7 @@ public abstract class Enemy extends MainCharacter{
         rangeForAttack = value;
     }
 
+
     public void goAttacking() {
         isAttacking = true;
     }
@@ -44,6 +45,8 @@ public abstract class Enemy extends MainCharacter{
     public void attack(Player p,BFS bfs) {
         if (!isAlive() || !bfs.isNear(this, getRangeDiffBlocMax()))
             isAttacking = false;
+            if (!isAlive())
+                getEnvironment().removeEnnemie(this);
         else {
             if (bfs.goRight(mapTile.getXCharacterInMap(getX()), mapTile.getYIndiceHeight(getYBOT()))) 
                 setRight(true);
