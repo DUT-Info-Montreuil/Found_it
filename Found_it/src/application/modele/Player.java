@@ -60,6 +60,8 @@ public class Player extends MainCharacter {
 	}
 
 	public void update() {
+		if (!isAlive())
+			getEnvironment().removePlayer();
 		if (!isInInventory()) {
 			if (getLeftPressed())
 				moveLeft();

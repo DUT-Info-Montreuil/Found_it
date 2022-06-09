@@ -1,6 +1,8 @@
 package application.vue;
 
 
+import java.nio.MappedByteBuffer;
+
 import application.modele.Enemy;
 import application.modele.MainCharacter;
 import application.modele.Player;
@@ -34,23 +36,24 @@ public class CharacterVue {
 	}
 	
 	public void initImageCharacter() {
+		nbImage = new int[5];
 		if (c instanceof Player) {
 			character = new ImageView(new Image("application/vue/character/SwordsManAnim.png"));
-			int[] numberImage = {10,6,2,2,9};
+			nbImage[0]=10; nbImage[1]=6; nbImage[2]=2; nbImage[3]=2; nbImage[4]=9;
 		}
 		else if (c instanceof Zombie) {
 			character = new ImageView(new Image("application/vue/ennemies/ElDiabloAnimation.png"));
-			int[] numberImage = {6,6,3,2,4};
+			nbImage[0]=6; nbImage[1]=5; nbImage[2]=1; nbImage[3]=1; nbImage[4]=4;
 		}
 		else if (c instanceof Slime) {
-			character = new ImageView(new Image("application/vue/ennemies/slime.png"));
-			int[] numberImage = {10,6,2,2,9};
+			character = new ImageView(new Image("application/vue/ennemies/SlimesAnimation.png"));
+			nbImage[0]=9; nbImage[1]=9; nbImage[2]=9; nbImage[3]=9; nbImage[4]=9;
 		}
-		else if (c instanceof Squeleton)
-			character = new ImageView(new Image("application/vue/ennemies/squeleton.png"));
-			int[] numberImage = {10,6,2,2,9};
+		// else if (c instanceof Squeleton) {
+		// 	character = new ImageView(new Image("application/vue/ennemies/squeleton.png"));
+		// 	int[] nbImage = {10,6,2,2,9};
+		// }
 		character.setId(c.getId());
-		nbImage = numberImage;
 		character.setViewport(new Rectangle2D(0, 0, 32, 32));
 	}
 
@@ -62,6 +65,9 @@ public class CharacterVue {
 		return character;
 	}
 	
+	public int[] getNbImage() {
+		return nbImage;
+	}
 	
 	private void linkCharacter() {
 		character.translateXProperty().bind(c.getXProperty());
@@ -71,7 +77,7 @@ public class CharacterVue {
 
 	public void nextImage(int ligne) {
 		if (character.getViewport().getMinY() == ligne * 32) {
-			if (character.getViewport().getMaxX() >= 32 * nbImage[ligne])
+			if (isLastImage(ligne))
 				character.setViewport(new Rectangle2D(0, character.getViewport().getMinY(), 32, 32));
 			else
 				character.setViewport(new Rectangle2D(character.getViewport().getMaxX(), character.getViewport().getMinY(), 32, 32));
@@ -80,12 +86,22 @@ public class CharacterVue {
 			character.setViewport(new Rectangle2D(0, ligne * 32, 32, 32));
 		}
 	}
+	private boolean isLastImage(int ligne) {
+		return character.getViewport().getMaxX() >= 32 * nbImage[ligne];
+	}
 
 	private void initLoopImage() {
 		loopImage = new Timeline();
 		loopImage.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.12),(ev ->{
-			if (c.isJumpingBoolean())
+			if (!c.isAlive()) {
+				nextImage(4);
+				if (isLastImage(4)) {
+					mapPane.getChildren().remove(character);
+					loopImage.stop();
+				}
+			}
+			else if (c.isJumpingBoolean())
 				nextImage(2);
 			else if (c.isFallingBoolean())
 				nextImage(3);

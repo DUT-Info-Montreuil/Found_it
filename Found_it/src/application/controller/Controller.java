@@ -69,7 +69,7 @@ public class Controller  implements Initializable{
 		ListChangeListener<Projectile> pObs = new ObsProjectile(mapPane);
 		e.getListProjectileProperty().addListener(pObs);
 		e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
-		// e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
+		e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
 		// e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
 		initGameLoop();
 		gameLoop.play();

@@ -29,6 +29,9 @@ public class Environment {
     public ObservableList<Projectile> getListProjectileProperty() {
         return listProjectile;
     }
+    public void removePlayer() {
+        player = null;
+    }
     public void addEnemy(Enemy e) {
         ennemies.add(e);
         e.gravity();

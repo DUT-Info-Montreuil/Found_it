@@ -34,6 +34,13 @@ public class KeyManager implements EventHandler<KeyEvent> {
 					player.openCloseInventory();
 				}
 			break;
+			case Z : 
+				if (e.getEventType() == KeyEvent.KEY_RELEASED)
+					player.setVIT(2);
+				else
+					player.setVIT(3);
+	
+			break;
 			default:		
 			break;
 					

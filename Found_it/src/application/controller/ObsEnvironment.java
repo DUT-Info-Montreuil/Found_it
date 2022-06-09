@@ -18,9 +18,7 @@ public class ObsEnvironment implements ListChangeListener<Enemy> {
     public void onChanged(Change<?extends Enemy> c) {
         while (c.next()) {
             for (Enemy e : c.getAddedSubList())
-                new CharacterVue(mapPane,e);
-            for (Enemy e : c.getRemoved())
-                mapPane.getChildren().remove(mapPane.lookup("#" + e.getId()));      
+                new CharacterVue(mapPane,e);   
         }
     }
     
