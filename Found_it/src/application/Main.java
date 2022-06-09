@@ -21,6 +21,8 @@ public void start(Stage primaryStage) {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.setFullScreen(true);
+		System.out.println(primaryStage.getScene().getWidth());
+		System.out.println(primaryStage.getScene().getHeight());
 		primaryStage.show();
 		root.requestFocus();
 	} catch(Exception e) {

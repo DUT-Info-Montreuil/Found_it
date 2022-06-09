@@ -1,7 +1,11 @@
 package application.modele;
 
+import java.util.Observable;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Player extends MainCharacter {
 		
@@ -9,6 +13,7 @@ public class Player extends MainCharacter {
 	private BooleanProperty inInventory;
 	private final static int jumpMax = 4;
 	private Tool hand;
+	//private ObservableList<Integer> inventory = FXCollections.observableArrayList();
 	
 	public Player(int x,int y, TileMap map, int att, int pv, int speed) {
 		super(x,y,map, att, pv, jumpMax);
@@ -23,7 +28,7 @@ public class Player extends MainCharacter {
 		setUpPressed(false);
 	}
 	public void setLeftPressed(boolean b) {
-		leftPressed = b;
+		leftPressed = b;        
 	}
 	public void setRightPressed(boolean b) {
 		rightPressed = b;
@@ -57,7 +62,7 @@ public class Player extends MainCharacter {
 			super.setDirectionnalX(1);
 	}
 
-	public Tool getTools() {
+	public Tool getTools() {        
 		return hand;
 	}
 
@@ -68,7 +73,10 @@ public class Player extends MainCharacter {
 	public void useTool(int x, int y) {
 		if (hand != null)
 			hand.use(x,y);
+			//inventory.add(mapTile.getCodeTuile(x, y));
 	}
+
+
 	
 	
 }
