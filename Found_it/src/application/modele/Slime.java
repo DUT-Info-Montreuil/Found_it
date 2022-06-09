@@ -20,9 +20,9 @@ public class Slime extends Enemy{
             else 
                 harmless();
             jump();
-            if (leftPressedBoolean())
+            if (getLeftPressed())
                 moveLeft();
-            if (rightPressedBoolean())
+            if (getRightPressed())
                 moveRight();
             gravity();
     }

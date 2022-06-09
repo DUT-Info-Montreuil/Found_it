@@ -13,6 +13,7 @@ import application.modele.Squeleton;
 import application.modele.TileMap;
 import application.modele.Zombie;
 import application.vue.CharacterVue;
+import application.vue.InterfacePlayerVue;
 import application.vue.InventoryVue;
 import application.vue.MapVue;
 import javafx.animation.KeyFrame;
@@ -54,6 +55,7 @@ public class Controller  implements Initializable{
 		e = new Environment(mapTile);
 		player = new Player(0, 800, mapTile,0,100,2,e);
 		characterVue = new CharacterVue(mapPane,player);
+		new InterfacePlayerVue(player, mapPane);
 		new InventoryVue(mapPane, player, mapTile);
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
@@ -67,8 +69,8 @@ public class Controller  implements Initializable{
 		ListChangeListener<Projectile> pObs = new ObsProjectile(mapPane);
 		e.getListProjectileProperty().addListener(pObs);
 		e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
-		e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
-		e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
+		// e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
+		// e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
 		initGameLoop();
 		gameLoop.play();
 		

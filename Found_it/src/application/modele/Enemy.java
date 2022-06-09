@@ -32,10 +32,10 @@ public abstract class Enemy extends MainCharacter{
     public void setRight(boolean b) {
         right = b;
     }
-    public boolean rightPressedBoolean() {
+    public boolean getRightPressed() {
         return right;
     }
-    public boolean leftPressedBoolean() {
+    public boolean getLeftPressed() {
         return left;
     }
     public int getRangeDiffBlocMax() {
@@ -113,9 +113,9 @@ public abstract class Enemy extends MainCharacter{
                 harmless();
             if (isJumpingBoolean())
                 jump();
-            if (leftPressedBoolean())
+            if (getLeftPressed())
                 moveLeft();
-            if (rightPressedBoolean())
+            if (getRightPressed())
                 moveRight();
             gravity();
     }
