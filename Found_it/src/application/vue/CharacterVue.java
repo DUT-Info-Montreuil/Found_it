@@ -1,9 +1,7 @@
 package application.vue;
 
 
-import java.nio.MappedByteBuffer;
 
-import application.modele.Enemy;
 import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.Slime;
@@ -49,10 +47,10 @@ public class CharacterVue {
 			character = new ImageView(new Image("application/vue/ennemies/SlimesAnimation.png"));
 			nbImage[0]=9; nbImage[1]=9; nbImage[2]=9; nbImage[3]=9; nbImage[4]=9;
 		}
-		// else if (c instanceof Squeleton) {
-		// 	character = new ImageView(new Image("application/vue/ennemies/squeleton.png"));
-		// 	int[] nbImage = {10,6,2,2,9};
-		// }
+		else if (c instanceof Squeleton) {
+			character = new ImageView(new Image("application/vue/ennemies/HuntressAnimation.png"));
+			nbImage[0]=10; nbImage[1]=8; nbImage[2]=2; nbImage[3]=2; nbImage[4]=10;
+		}
 		character.setId(c.getId());
 		character.setViewport(new Rectangle2D(0, 0, 32, 32));
 	}
