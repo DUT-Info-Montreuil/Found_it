@@ -62,10 +62,6 @@ public class InventoryVue {
     public InventoryVue(Pane pane, Player p, TileMap map) {
         mainInventory = new TilePane();
         secondInventory = new TilePane();
-        mainInventory.setTranslateX(654);
-        mainInventory.setTranslateY(407);
-        mainInventory.setPrefColumns(9);
-        mainInventory.setPrefRows(4);
         player = p;
         this.map = map;
         inventoryIcon = new ImageView(inventoryPicture);
@@ -76,17 +72,17 @@ public class InventoryVue {
         river = new ImageView(riverPicture);
         grass = new ImageView(grassPicture);
         dirt = new ImageView(dirtPicture);
-        createMainInventory(mainInventory);
-        createSecondInventory(secondInventory);
+        createMainInventory(mainInventory,pane);
+        createSecondInventory(secondInventory,pane);
         linkInventory();
     }
 
-    public void createMainInventory(TilePane inv){
-        pane.getChildren().add(mainInventory);
-        mainInventory.setTranslateX(654);
-        mainInventory.setTranslateY(407);
-        mainInventory.setPrefColumns(9);
-        mainInventory.setPrefRows(4);
+    public void createMainInventory(TilePane inv,Pane pane){
+        pane.getChildren().add(inv);
+        inv.setTranslateX(654);
+        inv.setTranslateY(407);
+        inv.setPrefColumns(9);
+        inv.setPrefRows(4);
         for(int i = 0; i < 36; i++){
             Button inventoryCase = new Button();
             inventoryCase.setId("B"+i);
@@ -101,13 +97,13 @@ public class InventoryVue {
     }
 
 
-    public void createSecondInventory(Pane pane) {
-        pane.getChildren().add(secondInventory);
-        secondInventory.setHgap(10);
-        secondInventory.getChildren().add(inventoryIcon);
-        secondInventory.getChildren().add(woodPickaxe);
-        secondInventory.getChildren().add(woodAxe);
-        secondInventory.getChildren().add(woodSword);
+    public void createSecondInventory(TilePane inv,Pane pane) {
+        pane.getChildren().add(inv);
+        inv.setHgap(10);
+        inv.getChildren().add(inventoryIcon);
+        inv.getChildren().add(woodPickaxe);
+        inv.getChildren().add(woodAxe);
+        inv.getChildren().add(woodSword);
     }
 
  
@@ -115,7 +111,7 @@ public class InventoryVue {
 
     public void linkInventory() {
         mainInventory.visibleProperty().bind(player.isInInventoryProperty());
-        secondInventory.visibleProperty().bind(player.isInInventoryProperty());
+        //secondInventory.visibleProperty();
         inventoryIcon.setOnMouseClicked(event -> {
             player.setTools(null);
         });
