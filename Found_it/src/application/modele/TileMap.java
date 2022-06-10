@@ -16,7 +16,6 @@ public class TileMap {
 	public TileMap(int width, int height) {
 		this.width = width;
 		this.height = height;
-		// map = new MapLoader().translateToObservableList();
 		map = new MapLoader().readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsjson/MapTestTest.csv"));
 	}
 	
