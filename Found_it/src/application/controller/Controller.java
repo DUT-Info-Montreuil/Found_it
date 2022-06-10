@@ -53,7 +53,7 @@ public class Controller  implements Initializable{
 		mapTile = new TileMap(60,34);
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
-		player = new Player(0, 800, mapTile,0,500,2,e);
+		player = new Player(0, 800, mapTile,0,300,2,e);
 		characterVue = new CharacterVue(mapPane,player);
 		new InterfacePlayerVue(player, mapPane);
 		new InventoryVue(mapPane, player, mapTile);

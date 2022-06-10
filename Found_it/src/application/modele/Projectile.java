@@ -22,10 +22,14 @@ public class Projectile {
         range = launcher.getRangeAttack() * mapTile.getPIXELBLOCK();
         this.launcher = launcher;
         this.target = target;
-        if (getX() - target.getX() <= 0) dx = new SimpleIntegerProperty(2);
-        else dx = new SimpleIntegerProperty(-2);
-        if (getY() - target.getY() <= 0) dy = new SimpleIntegerProperty(1);
-        else dy = new SimpleIntegerProperty(-1);
+        if (getX() - target.getX() <= 0) 
+            dx = new SimpleIntegerProperty(2);
+        else 
+            dx = new SimpleIntegerProperty(-2);
+        if (getY() - target.getY() <= 0) 
+            dy = new SimpleIntegerProperty(1);
+        else 
+            dy = new SimpleIntegerProperty(-1);
         yTarget = target.getY();
         environment = env;
         id = "P" + cpt++;

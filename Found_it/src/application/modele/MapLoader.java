@@ -53,15 +53,4 @@ public class MapLoader {
 
 	}
 
-	// public void readFile() {
-	// 	JSONParser jsonP = new JSONParser();
-	// 	try {
-	// 		FileReader fileReader = new FileReader("C:/Users/Megaport/Documents/SAE dev/Found_it/src/application/vue/mapsjson/map1.json");
-	// 		JSONObject jsonO = (JSONObject)jsonP.parse(fileReader);
-	// 		JSONArray jsonA = (JSONArray)jsonO.get("layers");
-	// 		System.out.println(jsonA);
-
-	// 	} catch(Exception e) { e.printStackTrace(); }
-	// }
-
 }

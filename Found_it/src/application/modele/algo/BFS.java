@@ -12,14 +12,16 @@ public class BFS {
 	private MainCharacter target;
 	private Coord start;
 	private int[][] bfs;
+	private int range;
 	private final int jumpMax;
 	private final static int VIDE = -5, IMPOSSIBLE = -2, BLOCPHYSIQUE = -9;
 	
-	public BFS(MainCharacter target, TileMap map, int jumpMax) {
+	public BFS(MainCharacter target, TileMap map, int jumpMax, int range) {
 		file = new ArrayList<Coord>();
 		mapTile = map;
 		this.jumpMax = jumpMax;
 		this.target = target;
+		this.range = range;
 		bfs = new int[mapTile.getHeight()][mapTile.getWidth()];
 	}
 	public void launch() {
@@ -30,7 +32,8 @@ public class BFS {
 			for (Coord c : getCoordProximity(file.get(0))) {
 				if (availableCoord(c) ) {
 					bfs[c.getY()][c.getX()] = bfs[file.get(0).getY()][file.get(0).getX()] + 1;
-					file.add(c);
+					if (bfs[c.getY()][c.getX()] < range)
+						file.add(c);
 				}
 			}
 			file.remove(0);

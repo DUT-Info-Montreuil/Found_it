@@ -21,7 +21,7 @@ public class Environment {
     }
     public void setPlayer(Player p) {
         player = p;
-        bfs = new BFS(player, map, 4);
+        bfs = new BFS(player, map, 4,15);
     }
     public ObservableList<Enemy> getListEnemiesProperty() {
         return ennemies;
