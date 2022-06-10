@@ -1,6 +1,12 @@
 package application.modele;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+import javax.annotation.processing.Filer;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -51,6 +57,25 @@ public class MapLoader {
 			list.add(x);
 		return list;
 
+	}
+
+	public ObservableList<Integer> readFile(File file) {
+		ObservableList<Integer> list = FXCollections.observableArrayList();
+		String line;
+		FileReader fr;
+		BufferedReader br;
+		try {
+			fr = new FileReader(file);
+			br = new BufferedReader(fr);
+			line = br.readLine();
+			while (line != null) {
+				for (String num : line.split(",")) {
+					list.add(Integer.parseInt(num));
+				}
+				line = br.readLine();
+			}
+		}catch(Exception e){System.out.println("pas marche");}
+		return list;
 	}
 
 }
