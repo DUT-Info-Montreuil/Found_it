@@ -11,6 +11,7 @@ import application.modele.Projectile;
 import application.modele.Slime;
 import application.modele.Squeleton;
 import application.modele.TileMap;
+import application.modele.Wizard;
 import application.modele.Zombie;
 import application.vue.CharacterVue;
 import application.vue.InterfacePlayerVue;
@@ -49,7 +50,7 @@ public class Controller  implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		music();
+		//music();
 		mapTile = new TileMap(60,34);
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
@@ -71,6 +72,7 @@ public class Controller  implements Initializable{
 		e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
 		e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
 		e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
+		e.addEnemy(new Wizard(600, 150, mapTile, 10, 75, e));
 		initGameLoop();
 		gameLoop.play();
 		
