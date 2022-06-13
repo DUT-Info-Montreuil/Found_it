@@ -21,6 +21,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -49,14 +50,16 @@ public class Controller  implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		Scene scene = new Scene(game,960,544); 
 		music();
 		mapTile = new TileMap(60,34);
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
 		player = new Player(0, 800, mapTile,0,300,2,e);
 		characterVue = new CharacterVue(mapPane,player);
+		Camera cam = new Camera(scene, player);
 		new InterfacePlayerVue(player, mapPane);
-		new InventoryVue(mapPane, player, mapTile);
+		new InventoryVue(mapPane, player, mapTile); 
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
 		mapTile.getMap().addListener(listen);
@@ -84,7 +87,7 @@ public class Controller  implements Initializable{
 		gameLoop.getKeyFrames().add(kf);
 	}
 	public void music() {
-		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
+		String s = "C:/Users/Megaport/Documents/SAE dev/GITHUB/Found_it/Found_it/src/application/music.mp3";
 		Media media = new Media(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
