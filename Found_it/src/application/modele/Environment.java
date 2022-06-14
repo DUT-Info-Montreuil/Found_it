@@ -42,9 +42,17 @@ public class Environment {
         ennemies.remove(e);
     }
 
+    public void recalculateBFS() {
+        bfs.launch();
+    }
+
+    public boolean IsOnBFSzero(int x, int y) {
+        return bfs.isOnZero(x, y);
+    }
+
+
     public void update() {
         player.update();
-        bfs.launch();
         for (int j = ennemies.size() - 1 ; j >= 0 ; j--)
             ennemies.get(j).update(player, bfs);
         for (int i = listProjectile.size() - 1 ; i >= 0 ; i--)

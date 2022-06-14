@@ -133,6 +133,10 @@ public class BFS {
 		return bfs[mapTile.getYIndiceHeight(m.getY())][mapTile.getXCharacterInMap(m.getX())] <= value;
 	}
 
+	public boolean isOnZero (int x, int y) {
+		return bfs[mapTile.getYIndiceHeight(y)][mapTile.getXCharacterInMap(x)]==0; 
+	}
+
 
 	
 }

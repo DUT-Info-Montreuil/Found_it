@@ -11,12 +11,12 @@ public class TileMap {
 	private final int[] LISTIDBLOCKTRANSPARENT = {3};
 	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {4}; 
 	private ObservableList<Integer> map;
+	private MapLoader loader;
 	
 
 	public TileMap(int width, int height) {
-		this.width = width;
-		this.height = height;
-		map = new MapLoader().readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/Map1.0.csv"));
+		loader = new MapLoader(this);
+		map = loader.readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/Map1.0.csv"));
 	}
 	
 	public ObservableList<Integer> getMap() {
@@ -26,8 +26,14 @@ public class TileMap {
 	public int getWidth() {
 		return width;
 	}
+	public void setWidth(int value) {
+		width = value;
+	}
 	public int getHeight() {
 		return height;
+	}
+	public void setHeight(int value) {
+		height = value;
 	}
 	
 	public int getPIXELBLOCK() {
