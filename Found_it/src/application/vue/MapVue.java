@@ -27,8 +27,8 @@ public class MapVue {
 	public MapVue(TilePane mapTilePane, TileMap mapTileMap) {
 		this.mapTilePane = mapTilePane;
 		this.mapTileMap = mapTileMap;
-		mapTilePane.setPrefColumns(60);
-		mapTilePane.setPrefRows(34);
+		mapTilePane.setPrefColumns(mapTileMap.getWidth());
+		mapTilePane.setPrefRows(mapTileMap.getHeight());
 		buildMap();
 	}
 	
@@ -65,11 +65,11 @@ public class MapVue {
 
 	public enum TypeTuiles {
 
-		sky (111),
-		grass(1),
-		dirt(19),
-		river(2),
-		bedrock(0);
+		sky (3),
+		grass(5),
+		dirt(2),
+		river(0),
+		bedrock(4);
 	
 		private int codeTuiles;
 	

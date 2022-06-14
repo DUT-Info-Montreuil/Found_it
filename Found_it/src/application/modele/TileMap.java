@@ -8,15 +8,15 @@ public class TileMap {
 	
 	private int width, height;
 	private final int PIXEL = 32;
-	private final int[] LISTIDBLOCKTRANSPARENT = {111};
-	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {999}; 
+	private final int[] LISTIDBLOCKTRANSPARENT = {3};
+	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {4}; 
 	private ObservableList<Integer> map;
 	
 
 	public TileMap(int width, int height) {
 		this.width = width;
 		this.height = height;
-		map = new MapLoader().readFile(new File("C:/Users/Megaport/Documents/SAE dev/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/MapTestTest.csv"));
+		map = new MapLoader().readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/Map1.0.csv"));
 	}
 	
 	public ObservableList<Integer> getMap() {

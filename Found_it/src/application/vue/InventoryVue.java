@@ -1,6 +1,7 @@
 package application.vue;
 
 
+import application.controller.Camera;
 import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
@@ -13,6 +14,7 @@ import javafx.scene.layout.TilePane;
 public class InventoryVue {
     
     private TilePane inventory;
+    private Camera cam;
     private TileMap map;
     private Player player;
     private ImageView inventoryIcon;
@@ -36,10 +38,11 @@ public class InventoryVue {
     private final Image woodSwordPicture = new Image("application/vue/weapons/woodSword.png");
 
 
-    public InventoryVue(Pane pane, Player p, TileMap map) {
+    public InventoryVue(Pane pane, Player p, TileMap map, Camera cam) {
         inventory = new TilePane();
         player = p;
         this.map = map;
+        this.cam = cam;
         inventoryIcon = new ImageView(inventoryPicture);
         woodPickaxe = new ImageView(woodPickaxePicture);
         woodAxe = new ImageView(woodAxePicture);
@@ -51,16 +54,16 @@ public class InventoryVue {
     public void addInventory(Pane pane) {
         pane.getChildren().add(inventory);
         inventory.getChildren().add(inventoryIcon);
-        inventory.setHgap(10);
         inventory.getChildren().add(woodPickaxe);
-        inventory.setHgap(10);
         inventory.getChildren().add(woodAxe);
-        inventory.setHgap(10);
         inventory.getChildren().add(woodSword);
+        inventory.setHgap(10);
     }
 
     public void linkInventory() {
         inventory.visibleProperty().bind(player.isInInventoryProperty());
+        inventory.translateXProperty().bind(cam.translateXProperty());
+        inventory.translateYProperty().bind(cam.translateYProperty());
         inventoryIcon.setOnMouseClicked(event -> {
             player.setTools(null);
         });
@@ -68,7 +71,7 @@ public class InventoryVue {
             player.setTools(new Pelle(map, 32, player));
         });
         woodSword.setOnMouseClicked(event -> {
-            player.setTools(new Sword(map, 40, 32, player));
+            player.setTools(new Sword(map, 10, 32, player));
         });
         
     }
