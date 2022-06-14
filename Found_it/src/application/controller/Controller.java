@@ -51,7 +51,7 @@ public class Controller  implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//music();
-		mapTile = new TileMap(60,34);
+		mapTile = new TileMap(600,340);
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
 		player = new Player(0, 800, mapTile,0,300,2,e);
