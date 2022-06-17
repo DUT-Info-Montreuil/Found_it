@@ -1,6 +1,7 @@
 package application.vue;
 
 
+import application.modele.Inventory;
 import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
@@ -21,6 +22,7 @@ public class InventoryVue {
     private Player player;
     private ImageView bareHand;
     private int numberOfBlocks;
+    private Button[] buttons;
     //Wood :
     private ImageView wood;
     private ImageView woodPickaxe;
@@ -72,17 +74,37 @@ public class InventoryVue {
         river = new ImageView(riverPicture);
         grass = new ImageView(grassPicture);
         dirt = new ImageView(dirtPicture);
-        createMainInventory(mainInventory,pane);
+        createMainInventory();
         createSecondInventory(secondInventory,pane);
         linkInventory();
     }
 
-    public void createMainInventory(TilePane inv,Pane pane){
-        pane.getChildren().add(inv);
-        inv.setTranslateX(775);
-        inv.setTranslateY(407);
-        inv.setPrefColumns(9);
-        inv.setPrefRows(4);
+    public void createMainInventory(){
+        pane.getChildren().add(mainInventory);
+        mainInventory.setTranslateX(775);
+        mainInventory.setTranslateY(407);
+        mainInventory.setPrefColumns(9);
+        mainInventory.setPrefRows(4);
+        mainInventoryResources(mainInventory);
+        mainInventory.setOrientation(Orientation.VERTICAL);
+        mainInventory.setHgap(5);
+        mainInventory.setVgap(5);
+    }
+
+    public void addInInventoryVue(int index, int block){
+        Button inventoryCase = new Button();
+        inventoryCase.setGraphic(dirt);
+        mainInventory.getChildren().set(index,)
+
+
+    }
+
+    public void refreshImage(Button but, int block) {
+        if ()
+    }
+
+
+    public void mainInventoryResources(TilePane inv){
         for(int i = 0; i < 20; i++){
             Button inventoryCase = new Button();
             inventoryCase.setId("B"+i);
@@ -91,9 +113,6 @@ public class InventoryVue {
             inventoryCase.setStyle("-fx-base: #e0d9d8;");
             inv.getChildren().add(inventoryCase);
         }
-        inv.setOrientation(Orientation.VERTICAL);
-        inv.setHgap(5);
-        inv.setVgap(5);
     }
 
 
