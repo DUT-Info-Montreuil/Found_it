@@ -1,20 +1,22 @@
 package application.modele;
 
+import java.io.File;
+
 import javafx.collections.ObservableList;
 
 public class TileMap {
 	
 	private int width, height;
 	private final int PIXEL = 32;
-	private final int[] LISTIDBLOCKTRANSPARENT = {112};
-	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {999}; 
+	private final int[] LISTIDBLOCKTRANSPARENT = {7};
+	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {9}; 
 	private ObservableList<Integer> map;
+	private MapLoader loader;
 	
 
-	public TileMap(int width, int height) {
-		this.width = width;
-		this.height = height;
-		map = new MapLoader().translateToObservableList();
+	public TileMap() {
+		loader = new MapLoader(this);
+		map = loader.readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/MapTestTest.csv"));
 	}
 	
 	public ObservableList<Integer> getMap() {
@@ -24,8 +26,14 @@ public class TileMap {
 	public int getWidth() {
 		return width;
 	}
+	public void setWidth(int value) {
+		width = value;
+	}
 	public int getHeight() {
 		return height;
+	}
+	public void setHeight(int value) {
+		height = value;
 	}
 	
 	public int getPIXELBLOCK() {

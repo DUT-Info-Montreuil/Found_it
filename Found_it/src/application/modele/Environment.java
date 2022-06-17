@@ -21,7 +21,7 @@ public class Environment {
     }
     public void setPlayer(Player p) {
         player = p;
-        bfs = new BFS(player, map, 4);
+        bfs = new BFS(player, map, 4,15);
     }
     public ObservableList<Enemy> getListEnemiesProperty() {
         return ennemies;
@@ -41,6 +41,15 @@ public class Environment {
     public void removeEnnemie(Enemy e) {
         ennemies.remove(e);
     }
+
+    public void recalculateBFS() {
+        bfs.launch();
+    }
+
+    public boolean IsOnBFSzero(int x, int y) {
+        return bfs.isOnZero(x, y);
+    }
+
 
     public void update() {
         player.update();

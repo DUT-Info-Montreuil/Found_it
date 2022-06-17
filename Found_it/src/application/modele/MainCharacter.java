@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class MainCharacter {
 
-	private static Environment environment;
+	protected static Environment environment;
 	private IntegerProperty x, y;
 	private final static int PIXELCHARACTER = 32 - 4;
 	private int VIT, att;

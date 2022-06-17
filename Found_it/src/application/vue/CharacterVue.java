@@ -6,6 +6,7 @@ import application.modele.MainCharacter;
 import application.modele.Player;
 import application.modele.Slime;
 import application.modele.Squeleton;
+import application.modele.Wizard;
 import application.modele.Zombie;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -50,6 +51,10 @@ public class CharacterVue {
 		else if (c instanceof Squeleton) {
 			character = new ImageView(new Image("application/vue/ennemies/HuntressAnimation.png"));
 			nbImage[0]=10; nbImage[1]=8; nbImage[2]=2; nbImage[3]=2; nbImage[4]=10;
+		}
+		else if(c instanceof Wizard){
+			character = new ImageView(new Image("application/vue/ennemies/WizardAnimation.png"));
+			nbImage[0]=8; nbImage[1]=8; nbImage[2]=8; nbImage[3]=8; nbImage[4]=5;
 		}
 		character.setId(c.getId());
 		character.setViewport(new Rectangle2D(0, 0, 32, 32));
