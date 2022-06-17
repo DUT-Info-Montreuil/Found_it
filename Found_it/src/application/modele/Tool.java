@@ -25,6 +25,10 @@ public abstract class Tool {
 		return Math.abs(player.getY() - y) <= getRange() || Math.abs(player.getYBOT() - y) <= getRange();
 	}
 
+    public Player getPlayer(){
+        return this.player;
+    }
+
     public abstract void use(int x, int y);
 
 }

@@ -2,6 +2,8 @@ package application.modele;
 
 import java.util.Observable;
 
+import javax.annotation.Resource;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -13,13 +15,14 @@ public class Player extends MainCharacter {
 	private BooleanProperty inInventory;
 	private final static int jumpMax = 4;
 	private Tool hand;
-	//private ObservableList<Integer> inventory = FXCollections.observableArrayList();
+	private Inventory inventory;
 	
 	public Player(int x,int y, TileMap map, int att, int pv, int speed) {
 		super(x,y,map, att, pv, jumpMax);
 		setVIT(speed);
 		inInventory = new SimpleBooleanProperty(false);
 		hand = new Pelle(map, 1, this);
+		this.inventory = new Inventory();
 	}
 	
 	public void stopAction() {
@@ -75,6 +78,12 @@ public class Player extends MainCharacter {
 			hand.use(x,y);
 			//inventory.add(mapTile.getCodeTuile(x, y));
 	}
+
+	public Inventory getInventory(){
+		return this.inventory;
+	}
+
+
 
 
 	

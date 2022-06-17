@@ -6,7 +6,8 @@ public class TileMap {
 	
 	private int width, height;
 	private final int PIXEL = 32;
-	private final int[] LISTIDBLOCKTRANSPARENT = {112}; 
+	private final int[] LISTIDBLOCKTRANSPARENT = {112};
+	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {2}; 
 	private ObservableList<Integer> map;
 	
 
@@ -62,6 +63,14 @@ public class TileMap {
 	}
 	public void remove(int x, int y) {
 		map.set(getIndice(x, y), LISTIDBLOCKTRANSPARENT[0]);
+	}
+
+	public boolean wasIndestructible(int block){
+		int i = 0;
+		while(i < LISTIDBLOCKINDESTRUCTIBLE.length && LISTIDBLOCKINDESTRUCTIBLE[i] != block){
+			i++;
+		}
+		return i < LISTIDBLOCKINDESTRUCTIBLE.length;
 	}
 	
 }
