@@ -6,6 +6,7 @@ import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
 import application.modele.weapons.Sword;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -49,6 +50,7 @@ public class InventoryVue {
         woodSword = new ImageView(woodSwordPicture);
         addInventory(pane);
         linkInventory();
+        Button but = new Button();
     }
 
     public void addInventory(Pane pane) {

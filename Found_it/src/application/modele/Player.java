@@ -74,8 +74,8 @@ public class Player extends MainCharacter {
 			if (isJumpingBoolean())
 				jump();
 		gravity();
-		if (environment.IsOnBFSzero(getX(),getY()))
-			environment.recalculateBFS();
+		// if (environment.IsOnBFSzero(getX(),getY()))
+		// 	environment.recalculateBFS();
 	}
 	
 	

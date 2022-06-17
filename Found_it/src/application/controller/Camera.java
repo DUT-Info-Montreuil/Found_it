@@ -24,8 +24,8 @@ public class Camera extends ParallelCamera {
             else
                 this.setTranslateX(player.getX() - radius);
         });
-        player.getYProperty().addListener((obs,old,nouv)-> {
-            this.setTranslateY(player.getY() - radius);
-        });
+        // player.getYProperty().addListener((obs,old,nouv)-> {
+        //     this.setTranslateY(player.getY() - radius);
+        // });
     }
 }

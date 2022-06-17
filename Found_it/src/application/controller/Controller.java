@@ -72,10 +72,10 @@ public class Controller  implements Initializable{
 		e.getListEnemiesProperty().addListener(lObs);
 		ListChangeListener<Projectile> pObs = new ObsProjectile(mapPane);
 		e.getListProjectileProperty().addListener(pObs);
-		e.addEnemy(new Zombie (400, 1500, mapTile, 10, 40,e));
-		e.addEnemy(new Slime (500, 1500, mapTile, 10, 40,e));
-		e.addEnemy(new Squeleton(500, 1500, mapTile, 10, 40,e));
-		e.addEnemy(new Wizard(600, 1500, mapTile, 10, 75, e));
+		e.addEnemy(new Zombie (100, 100, mapTile, 10, 40,e));
+		e.addEnemy(new Slime (100, 100, mapTile, 10, 40,e));
+		e.addEnemy(new Squeleton(100, 100, mapTile, 10, 40,e));
+		e.addEnemy(new Wizard(100, 100, mapTile, 10, 75, e));
 		initGameLoop();
 		gameLoop.play();
 		
@@ -89,8 +89,9 @@ public class Controller  implements Initializable{
 		gameLoop.getKeyFrames().add(kf);
 	}
 	public void music() {
-		String s = "/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/music.mp3";
+		String s = "application/music.mp3";
 		Media media = new Media(Paths.get(s).toUri().toString());
+		System.out.println(Paths.get(s).toUri().toString());
 		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.play();
 	}

@@ -21,9 +21,6 @@ public class Environment {
     }
     public void setPlayer(Player p) {
         player = p;
-        player.gravity();
-        while(player.isFallingBoolean())
-            player.gravity();
         bfs = new BFS(player, map, 4,15);
     }
     public ObservableList<Enemy> getListEnemiesProperty() {
@@ -56,6 +53,7 @@ public class Environment {
 
     public void update() {
         player.update();
+        bfs.launch();
         for (int j = ennemies.size() - 1 ; j >= 0 ; j--)
             ennemies.get(j).update(player, bfs);
         for (int i = listProjectile.size() - 1 ; i >= 0 ; i--)
