@@ -11,6 +11,7 @@ import application.modele.Projectile;
 import application.modele.Slime;
 import application.modele.Squeleton;
 import application.modele.TileMap;
+import application.modele.Wizard;
 import application.modele.Zombie;
 import application.vue.CharacterVue;
 import application.vue.InterfacePlayerVue;
@@ -52,10 +53,10 @@ public class Controller  implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		Scene scene = new Scene(game,960,544); 
 		music();
-		mapTile = new TileMap(600,340);
+		mapTile = new TileMap();
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
-		player = new Player(0, 6300, mapTile,0,300,2,e);
+		player = new Player(50, 200, mapTile,0,300,2,e);
 		characterVue = new CharacterVue(mapPane,player);
 		Camera cam = new Camera(scene, player, mapTile);
 		new InterfacePlayerVue(player, mapPane, cam);
@@ -71,9 +72,10 @@ public class Controller  implements Initializable{
 		e.getListEnemiesProperty().addListener(lObs);
 		ListChangeListener<Projectile> pObs = new ObsProjectile(mapPane);
 		e.getListProjectileProperty().addListener(pObs);
-		e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
-		e.addEnemy(new Slime (500, 150, mapTile, 10, 40,e));
-	    e.addEnemy(new Squeleton(500, 150, mapTile, 10, 40,e));
+		e.addEnemy(new Zombie (400, 1500, mapTile, 10, 40,e));
+		e.addEnemy(new Slime (500, 1500, mapTile, 10, 40,e));
+		e.addEnemy(new Squeleton(500, 1500, mapTile, 10, 40,e));
+		e.addEnemy(new Wizard(600, 1500, mapTile, 10, 75, e));
 		initGameLoop();
 		gameLoop.play();
 		

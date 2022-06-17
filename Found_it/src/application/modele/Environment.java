@@ -21,6 +21,9 @@ public class Environment {
     }
     public void setPlayer(Player p) {
         player = p;
+        player.gravity();
+        while(player.isFallingBoolean())
+            player.gravity();
         bfs = new BFS(player, map, 4,15);
     }
     public ObservableList<Enemy> getListEnemiesProperty() {

@@ -1,6 +1,7 @@
 package application.vue;
 
 import application.modele.Arrow;
+import application.modele.Fireball;
 import application.modele.Projectile;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,9 @@ public class ProjectileVue {
     public void initImageProjectile() {
       if (p instanceof Arrow) {
         projectile = new ImageView(new Image("application/vue/tilset/arrow.png"));
+      }
+      if (p instanceof Fireball) {
+        projectile = new ImageView(new Image("application/vue/tilset/Fireball.png"));
       }
       projectile.setRotate(rotationProjectile());
 	  }

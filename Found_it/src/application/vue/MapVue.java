@@ -65,11 +65,11 @@ public class MapVue {
 
 	public enum TypeTuiles {
 
-		sky (3),
-		grass(5),
-		dirt(2),
+		sky (7),
+		grass(8),
+		dirt(6),
 		river(0),
-		bedrock(4);
+		bedrock(9);
 	
 		private int codeTuiles;
 	
