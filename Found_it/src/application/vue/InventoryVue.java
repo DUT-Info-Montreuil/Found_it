@@ -5,6 +5,7 @@ import application.modele.Inventory;
 import application.modele.Pelle;
 import application.modele.Player;
 import application.modele.TileMap;
+import application.modele.TypeTuiles;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -66,6 +67,7 @@ public class InventoryVue {
         secondInventory = new TilePane();
         player = p;
         this.map = map;
+        this.pane = pane;
         bareHand = new ImageView(bareHandPicture);
         woodPickaxe = new ImageView(woodPickaxePicture);
         woodAxe = new ImageView(woodAxePicture);
@@ -93,24 +95,27 @@ public class InventoryVue {
 
     public void addInInventoryVue(int index, int block){
         Button inventoryCase = new Button();
-        inventoryCase.setGraphic(dirt);
-        mainInventory.getChildren().set(index,)
-
-
+        setGraphicButton(inventoryCase, block);
+        mainInventory.getChildren().set(index,inventoryCase);
     }
 
-    public void refreshImage(Button but, int block) {
-        if ()
+    public void setGraphicButton(Button but, int block) {
+        but.setPrefWidth(64);
+        but.setPrefHeight(64);
+        but.setStyle("-fx-base: #e0d9d8;");
+        if (block == TypeTuiles.sky.getCodeTuile())
+            but.setGraphic(sky);
+        else if (block == TypeTuiles.dirt.getCodeTuile())
+            but.setGraphic(dirt);
+        else if (block == TypeTuiles.grass.getCodeTuile())
+            but.setGraphic(grass);
     }
 
 
     public void mainInventoryResources(TilePane inv){
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < 36; i++){
             Button inventoryCase = new Button();
-            inventoryCase.setId("B"+i);
-            inventoryCase.setPrefWidth(64);
-            inventoryCase.setPrefHeight(64);
-            inventoryCase.setStyle("-fx-base: #e0d9d8;");
+            setGraphicButton(inventoryCase, 0);
             inv.getChildren().add(inventoryCase);
         }
     }
@@ -130,7 +135,6 @@ public class InventoryVue {
 
     public void linkInventory() {
         mainInventory.visibleProperty().bind(player.isInInventoryProperty());
-        //secondInventory.visibleProperty();
         bareHand.setOnMouseClicked(event -> {
             player.setTools(null);
         });

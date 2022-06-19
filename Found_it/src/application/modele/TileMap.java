@@ -6,8 +6,8 @@ public class TileMap {
 	
 	private int width, height;
 	private final int PIXEL = 32;
-	private final int[] LISTIDBLOCKTRANSPARENT = {112};
-	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {2}; 
+	private final int[] LISTIDBLOCKTRANSPARENT = {TypeTuiles.sky.getCodeTuile()};
+	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {TypeTuiles.bedrock.getCodeTuile()}; 
 	private ObservableList<Integer> map;
 	
 

@@ -1,6 +1,7 @@
 package application.vue;
 
 import application.modele.TileMap;
+import application.modele.TypeTuiles;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -25,24 +26,20 @@ public class MapVue {
 	
 	private void buildMap() {
 		for (int j = 0 ; j < mapTileMap.getMap().size() ; j++)
-			if (mapTileMap.getMap().get(j).equals(112))
+			if (mapTileMap.getMap().get(j).equals(TypeTuiles.sky.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(sky));
-			else if (mapTileMap.getMap().get(j).equals(2))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.grass.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(grass));
-			else if (mapTileMap.getMap().get(j).equals(20))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.dirt.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(dirt));
-			else if (mapTileMap.getMap().get(j).equals(165))
-				mapTilePane.getChildren().add(new ImageView(river));
 	}
 	public void reloadTile(int index) {
-		if (mapTileMap.getMap().get(index).equals(112))
+		if (mapTileMap.getMap().get(index).equals(TypeTuiles.sky.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(sky));
-		else if (mapTileMap.getMap().get(index).equals(2))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.grass.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(grass));
-		else if (mapTileMap.getMap().get(index).equals(20))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.dirt.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(dirt));
-		else if (mapTileMap.getMap().get(index).equals(165))
-			mapTilePane.getChildren().set(index, new ImageView(river));
 	}
 	
 	

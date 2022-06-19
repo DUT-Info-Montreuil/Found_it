@@ -27,8 +27,6 @@ public class Inventory {
         else{
             getResourcesId(id).addQuantity();
         }
-            
-        
     }
 
     public boolean alreadyInInventory(int id){
