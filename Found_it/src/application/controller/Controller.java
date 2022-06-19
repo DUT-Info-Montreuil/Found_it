@@ -54,7 +54,7 @@ public class Controller  implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Scene scene = new Scene(game,960,544); 
-		music();
+		// music();
 		mapTile = new TileMap();
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
@@ -92,12 +92,12 @@ public class Controller  implements Initializable{
 		}));
 		gameLoop.getKeyFrames().add(kf);
 	}
-	public void music() {
-		String s = "C:/Users/Megaport/Documents/SAE dev/GITHUB/Found_it/Found_it/src/application/music.mp3";
-		Media media = new Media(Paths.get(s).toUri().toString());
-		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.play();
-	}
+	// public void music() {
+	// 	String s = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "application/music.mp3";
+	// 	Media media = new Media(Paths.get(s).toUri().toString());
+	// 	mediaPlayer = new MediaPlayer(media);
+	// 	mediaPlayer.play();
+	// }
 	
 	
 	
