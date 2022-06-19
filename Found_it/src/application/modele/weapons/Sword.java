@@ -10,16 +10,18 @@ public class Sword extends Tool{
     
     private Environment environment;
     private int damage;
+    private int rangeAttack;
 
     public Sword(TileMap map, int damage, int range, Player p) {
-        super(map,range,p);
+        super(map,0,p);
         environment = getPlayer().getEnvironment();
         this.damage = damage;
+        rangeAttack = range;
     }
 
     public void use(int x, int y) {
         if (!getPlayer().isInInventory()) 
-            for (Enemy e : environment.isNearPlayer(getRange()))
+            for (Enemy e : environment.isNearPlayer(rangeAttack))
                 e.takeDamage(damage);
     }
 
