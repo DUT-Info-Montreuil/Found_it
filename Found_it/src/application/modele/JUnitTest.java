@@ -12,7 +12,7 @@ public class JUnitTest {
 
     @Before
     public void initializeEnvironment(){
-        TileMap mapTile = new TileMap(600,340);
+        TileMap mapTile = new TileMap();
         Environment e = new Environment(mapTile);
         Player player = new Player(0, 6300, mapTile,0,300,2,e);
         e.addEnemy(new Zombie (400, 400, mapTile, 10, 40,e));
@@ -20,7 +20,7 @@ public class JUnitTest {
 
     @Test
     public void gettingAttack(){
-        TileMap mapTile = new TileMap(600,340);
+        TileMap mapTile = new TileMap();
         Environment e = new Environment(mapTile);
         Player p = new Player(0, 6300, mapTile,0,300,2,e);
 
@@ -31,7 +31,7 @@ public class JUnitTest {
 
     @Test
     public void attackingEnemies(){
-        TileMap mapTile = new TileMap(600,340);
+        TileMap mapTile = new TileMap();
         Environment e = new Environment(mapTile);
         Player p = new Player(0, 6300, mapTile,30,300,2,e);
 
@@ -44,24 +44,20 @@ public class JUnitTest {
     //
     @Test
     public void blockDisepear(){
-        TileMap mapTile = new TileMap(600,340);
+        TileMap mapTile = new TileMap();
         Environment e = new Environment(mapTile);
-        Player p = new Player(0, 40, mapTile,30,300,2,e);
-        ObservableList<Integer> map = FXCollections.observableArrayList();
-
-        map.add(3);
+        Player p = new Player(0, 0, mapTile,30,300,2,e);
+        p.setTools(new Pelle(mapTile, 1, p));
+        mapTile.replace(0, 0, 8);
         p.useTool(0, 0);
-        Assert.assertTrue(mapTile.wasTransparent(map.get(0)));
+        Assert.assertTrue(mapTile.wasTransparent(mapTile.getMap().get(0)));
     }
 
     @Test
-    public void jumping(){
-        TileMap mapTile = new TileMap(600,340);
+    public void isNotFalling(){
+        TileMap mapTile = new TileMap();
         Environment e = new Environment(mapTile);
         Player p = new Player(0, 40, mapTile,30,300,2,e);
-        p.jump();
-
-        Assert.assertTrue(p.isJumpingBoolean());
         Assert.assertFalse(p.isFallingBoolean());
     }
 
