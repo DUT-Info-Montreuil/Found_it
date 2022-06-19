@@ -1,6 +1,7 @@
 package application.vue;
 
 
+import application.modele.ConstructionPlan;
 import application.modele.Inventory;
 import application.modele.Pelle;
 import application.modele.Player;
@@ -22,8 +23,7 @@ public class InventoryVue {
     private TileMap map;
     private Player player;
     private ImageView bareHand;
-    private int numberOfBlocks;
-    private Button[] buttons;
+    private Inventory inv;
     //Wood :
     private ImageView wood;
     private ImageView woodPickaxe;
@@ -62,15 +62,15 @@ public class InventoryVue {
     //private final Image ironSwordPicture = new Image("");
 
 
-    public InventoryVue(Pane pane, Player p, TileMap map) {
+    public InventoryVue(Pane pane, Player p, TileMap map, Inventory inv) {
         mainInventory = new TilePane();
         secondInventory = new TilePane();
         player = p;
         this.map = map;
         this.pane = pane;
+        this.inv = inv;
         bareHand = new ImageView(bareHandPicture);
         woodPickaxe = new ImageView(woodPickaxePicture);
-        woodAxe = new ImageView(woodAxePicture);
         woodSword = new ImageView(woodSwordPicture);
         sky = new ImageView(skyPicture);
         river = new ImageView(riverPicture);
@@ -85,24 +85,46 @@ public class InventoryVue {
         pane.getChildren().add(mainInventory);
         mainInventory.setTranslateX(775);
         mainInventory.setTranslateY(407);
-        mainInventory.setPrefColumns(9);
-        mainInventory.setPrefRows(4);
-        mainInventoryResources(mainInventory);
+        mainInventory.setPrefColumns(inv.getWidthInventory());
+        mainInventory.setPrefRows(inv.getHeightInventory());
+        mainInventoryResources();
         mainInventory.setOrientation(Orientation.VERTICAL);
         mainInventory.setHgap(5);
         mainInventory.setVgap(5);
     }
 
-    public void addInInventoryVue(int index, int block){
+    public void addInInventoryVue(int block){
         Button inventoryCase = new Button();
         setGraphicButton(inventoryCase, block);
-        mainInventory.getChildren().set(index,inventoryCase);
+        inventoryCase.setOnMouseClicked(event -> {
+            player.setTools(new ConstructionPlan(map, 2, player, block));
+        });
+        inv.getResourcesId(block).getQuantityProperty().addListener((obs,old,nouv)-> {
+            inventoryCase.setText(String.valueOf(inv.getResourcesId(block).getQuantityValue()));
+        });
+        inventoryCase.setId("B" + block);
+        mainInventory.getChildren().set(getIndiceFirstForInventory(),inventoryCase);
+    }
+
+    public int getIndiceFirstForInventory() {
+        int i = 0;
+        while (mainInventory.getChildren().get(i).getId() != null)
+            i++;
+        return i;
+    }
+
+    public void removeInInventoryVue(int block) {
+        Button inventoryCase = new Button();
+        setGraphicButton(inventoryCase, 0);
+        mainInventory.getChildren().remove(mainInventory.lookup("#B" + block));
+        mainInventory.getChildren().add(inventoryCase);
     }
 
     public void setGraphicButton(Button but, int block) {
         but.setPrefWidth(64);
         but.setPrefHeight(64);
         but.setStyle("-fx-base: #e0d9d8;");
+        but.setFocusTraversable(false);
         if (block == TypeTuiles.sky.getCodeTuile())
             but.setGraphic(sky);
         else if (block == TypeTuiles.dirt.getCodeTuile())
@@ -112,11 +134,11 @@ public class InventoryVue {
     }
 
 
-    public void mainInventoryResources(TilePane inv){
-        for(int i = 0; i < 36; i++){
+    public void mainInventoryResources(){
+        for(int i = 0; i < inv.getWidthInventory()*inv.getHeightInventory(); i++){
             Button inventoryCase = new Button();
             setGraphicButton(inventoryCase, 0);
-            inv.getChildren().add(inventoryCase);
+            mainInventory.getChildren().add(inventoryCase);
         }
     }
 
@@ -126,7 +148,6 @@ public class InventoryVue {
         inv.setHgap(10);
         inv.getChildren().add(bareHand);
         inv.getChildren().add(woodPickaxe);
-        inv.getChildren().add(woodAxe);
         inv.getChildren().add(woodSword);
     }
 

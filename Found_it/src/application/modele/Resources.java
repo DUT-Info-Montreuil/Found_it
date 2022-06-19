@@ -10,19 +10,18 @@ import javafx.collections.ObservableList;
 
 public class Resources {
 
-    private int id;
+    private int idblock;
     private IntegerProperty quantity;
     private Inventory inv;
 
-    public Resources(int id, Inventory inv){
-        this.id = id;
+    public Resources(int idblock, Inventory inv){
+        this.idblock = idblock;
         this.inv = inv;
         this.quantity = new SimpleIntegerProperty(); 
-        
     }
 
-    public int getId(){
-        return this.id;
+    public int getIdBlock(){
+        return this.idblock;
     }
 
     public int getQuantityValue(){
@@ -39,11 +38,7 @@ public class Resources {
 
 
     public void removeResources(Resources r){
-        removeQuantity();
-        if(getQuantityValue() <= 0){
-            inv.removeInInventory(r);
-        }
-        
+        inv.removeInInventory(r);
     }
 
     public void addQuantity(){
@@ -52,6 +47,8 @@ public class Resources {
 
     public void removeQuantity(){
         quantity.set(getQuantityValue()- 1);
+        if (getQuantityValue() <= 0)
+            removeResources(this);
 
     }
 

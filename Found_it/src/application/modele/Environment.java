@@ -58,9 +58,9 @@ public class Environment {
 			player.moveLeft();
 		if (player.getRightPressedBoolean())
 			player.moveRight();
-        }
-            if (player.getUpPressedBoolean() || player.isJumpingBoolean())
+        if (player.getUpPressedBoolean() || player.isJumpingBoolean())
 			player.jump();
+        }
         player.gravity();
     }
 

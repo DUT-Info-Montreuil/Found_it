@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.modele.Enemy;
 import application.modele.Environment;
 import application.modele.Player;
+import application.modele.Resources;
 import application.modele.Slime;
 import application.modele.TileMap;
 import application.modele.Zombie;
@@ -36,6 +37,7 @@ public class Controller  implements Initializable{
 	private ClickManager clickControl;
 	private Environment e;
 	private MediaPlayer mediaPlayer;
+	private InventoryVue invVue;
 	
 	@FXML
 	private TilePane mapTilePane;
@@ -51,7 +53,9 @@ public class Controller  implements Initializable{
 		maps = new MapVue(mapTilePane, mapTile);
 		player = new Player(0, 800, mapTile,0,100,2);
 		new CharacterVue(mapPane,player);
-		new InventoryVue(mapPane, player, mapTile);
+		invVue = new InventoryVue(mapPane, player, mapTile, player.getInventory());
+		ListChangeListener<Resources> lObsInven = new ObsInventory(invVue);
+		player.getInventory().getInventoryProperty().addListener(lObsInven);
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
 		mapTile.getMap().addListener(listen);

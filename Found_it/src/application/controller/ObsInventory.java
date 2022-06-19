@@ -1,9 +1,6 @@
 package application.controller;
 
-import application.modele.Enemy;
-import application.modele.Player;
 import application.modele.Resources;
-import application.vue.CharacterVue;
 import application.vue.InventoryVue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
@@ -11,22 +8,21 @@ import javafx.scene.layout.Pane;
 public class ObsInventory implements ListChangeListener<Resources> {
 
 
-    private Pane mapPane;
-    private Player player;
     private InventoryVue inventoryVue;
 
-    public ObsInventory(Pane mapPane, Player p) {
-        this.mapPane = mapPane;
-        this.player = p;
+    public ObsInventory(InventoryVue inventoryVue) {
+        this.inventoryVue = inventoryVue;
     }
 
     @Override
     public void onChanged(Change<?extends Resources> c) {
         while (c.next()) {
             for (Resources r : c.getAddedSubList()){
-                 
+                inventoryVue.addInInventoryVue( r.getIdBlock());
             } 
-                
+            for (Resources r : c.getRemoved()){
+                inventoryVue.removeInInventoryVue(r.getIdBlock());;
+            }   
         }
     }
 

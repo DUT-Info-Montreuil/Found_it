@@ -72,5 +72,9 @@ public class TileMap {
 		}
 		return i < LISTIDBLOCKINDESTRUCTIBLE.length;
 	}
+
+	public void replace(int x, int y, int block) {
+		map.set(getIndice(x, y), block);
+	}
 	
 }
