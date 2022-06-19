@@ -16,7 +16,7 @@ public class TileMap {
 
 	public TileMap() {
 		loader = new MapLoader(this);
-		map = loader.readFile(new File("/home/etudiants/info/cgrosjean/Documents/SAE/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/MapTestTest.csv"));
+		map = loader.readFile(new File("C:/Users/Megaport/Documents/SAE dev/GITHUB/Found_it/Found_it/src/application/vue/mapsCSV/Map2.0.csv"));
 	}
 	
 	public ObservableList<Integer> getMap() {
