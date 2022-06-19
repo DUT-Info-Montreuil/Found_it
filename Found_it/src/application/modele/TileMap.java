@@ -8,8 +8,8 @@ public class TileMap {
 	
 	private int width, height;
 	private final int PIXEL = 32;
-	private final int[] LISTIDBLOCKTRANSPARENT = {7};
-	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {9}; 
+	private final int[] LISTIDBLOCKTRANSPARENT = {TypeTuiles.sky.getCodeTuile()};
+	private final int[] LISTIDBLOCKINDESTRUCTIBLE = {TypeTuiles.bedrock.getCodeTuile()}; 
 	private ObservableList<Integer> map;
 	private MapLoader loader;
 	
@@ -72,6 +72,16 @@ public class TileMap {
 	public void remove(int x, int y) {
 		if(map.get(getIndice(x, y)) != LISTIDBLOCKINDESTRUCTIBLE[0])
 			map.set(getIndice(x, y), LISTIDBLOCKTRANSPARENT[0]);
+	}
+	public boolean wasIndestructible(int block){
+		int i = 0;
+		while(i < LISTIDBLOCKINDESTRUCTIBLE.length && LISTIDBLOCKINDESTRUCTIBLE[i] != block){
+			i++;
+		}
+		return i < LISTIDBLOCKINDESTRUCTIBLE.length;
+	}
+	public void replace(int x, int y, int block) {
+		map.set(getIndice(x, y), block);
 	}
 	
 }

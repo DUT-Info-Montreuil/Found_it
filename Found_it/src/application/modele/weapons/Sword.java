@@ -8,23 +8,18 @@ import application.modele.Tool;
 
 public class Sword extends Tool{
     
-    private Player player;
-    private TileMap mapTile;
     private Environment environment;
-    private int range;
     private int damage;
 
     public Sword(TileMap map, int damage, int range, Player p) {
-        player = p;
-        mapTile = map;
-        environment = player.getEnvironment();
-        this.range = range;
+        super(map,range,p);
+        environment = getPlayer().getEnvironment();
         this.damage = damage;
     }
 
     public void use(int x, int y) {
-        if (!player.isInInventory()) 
-            for (Enemy e : environment.isNearPlayer(range))
+        if (!getPlayer().isInInventory()) 
+            for (Enemy e : environment.isNearPlayer(getRange()))
                 e.takeDamage(damage);
     }
 

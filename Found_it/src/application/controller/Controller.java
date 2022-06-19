@@ -8,6 +8,7 @@ import application.modele.Enemy;
 import application.modele.Environment;
 import application.modele.Player;
 import application.modele.Projectile;
+import application.modele.Resources;
 import application.modele.Slime;
 import application.modele.Squeleton;
 import application.modele.TileMap;
@@ -41,6 +42,7 @@ public class Controller  implements Initializable{
 	private Environment e;
 	private MediaPlayer mediaPlayer;
 	private CharacterVue characterVue;
+	private InventoryVue invVue;
 	
 	@FXML
 	private TilePane mapTilePane;
@@ -60,7 +62,9 @@ public class Controller  implements Initializable{
 		characterVue = new CharacterVue(mapPane,player);
 		Camera cam = new Camera(scene, player, mapTile);
 		new InterfacePlayerVue(player, mapPane, cam);
-		new InventoryVue(mapPane, player, mapTile, cam); 
+		invVue = new InventoryVue(mapPane, player, mapTile, player.getInventory(), cam);
+		ListChangeListener<Resources> lObsInven = new ObsInventory(invVue);
+		player.getInventory().getInventoryProperty().addListener(lObsInven);
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
 		mapTile.getMap().addListener(listen);

@@ -1,6 +1,7 @@
 package application.vue;
 
 import application.modele.TileMap;
+import application.modele.TypeTuiles;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -9,14 +10,6 @@ public class MapVue {
 
 	private TilePane mapTilePane;
 	private TileMap mapTileMap;
-
-	//private TypeTuiles tuiles;
-	
-	private TypeTuiles sky = TypeTuiles.sky;
-	private TypeTuiles grass = TypeTuiles.grass;
-	private TypeTuiles river = TypeTuiles.river;
-	private TypeTuiles dirt = TypeTuiles.dirt;
-	private TypeTuiles bedrock = TypeTuiles.bedrock;
 	
 	private Image skyPicture = new Image("application/vue/tilset/sky.png");
 	private Image grassPicture = new Image("application/vue/tilset/blocks/grass_side.png");
@@ -34,15 +27,15 @@ public class MapVue {
 	
 	private void buildMap() {
 		for (int j = 0 ; j < mapTileMap.getMap().size() ; j++){
-			if (mapTileMap.getMap().get(j).equals(sky.getCodeTuile()))
+			if (mapTileMap.getMap().get(j).equals(TypeTuiles.sky.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(skyPicture));
-			else if (mapTileMap.getMap().get(j).equals(grass.getCodeTuile()))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.grass.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(grassPicture));
-			else if (mapTileMap.getMap().get(j).equals(dirt.getCodeTuile()))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.dirt.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(dirtPicture));
-			else if (mapTileMap.getMap().get(j).equals(river.getCodeTuile()))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.river.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(riverPicture));
-			else if (mapTileMap.getMap().get(j).equals(bedrock.getCodeTuile()))
+			else if (mapTileMap.getMap().get(j).equals(TypeTuiles.bedrock.getCodeTuile()))
 				mapTilePane.getChildren().add(new ImageView(bedRockPicture));
 		
 		}
@@ -50,42 +43,17 @@ public class MapVue {
 	
 	public void reloadTile(int index) {
 		
-		if (mapTileMap.getMap().get(index).equals(sky.getCodeTuile()))
+		if (mapTileMap.getMap().get(index).equals(TypeTuiles.sky.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(skyPicture));
-		else if (mapTileMap.getMap().get(index).equals(grass.getCodeTuile()))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.grass.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(grassPicture));
-		else if (mapTileMap.getMap().get(index).equals(dirt.getCodeTuile()))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.dirt.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(dirtPicture));
-		else if (mapTileMap.getMap().get(index).equals(river.getCodeTuile()))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.river.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(riverPicture));
-		else if (mapTileMap.getMap().get(index).equals(bedrock.getCodeTuile()))
+		else if (mapTileMap.getMap().get(index).equals(TypeTuiles.bedrock.getCodeTuile()))
 			mapTilePane.getChildren().set(index, new ImageView(bedRockPicture));
 		
 	}
-
-	public enum TypeTuiles {
-
-		sky (7),
-		grass(8),
-		dirt(6),
-		river(0),
-		bedrock(9);
-	
-		private int codeTuiles;
-	
-		TypeTuiles(int codeTuiles){
-			this.codeTuiles = codeTuiles;
-		}
-	
-		public int getCodeTuile(){
-			return this.codeTuiles;
-		}
-	
-	
-	
-	}
-	
-	
-	
-	
+			
 }
