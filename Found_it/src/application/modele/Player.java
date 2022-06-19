@@ -9,6 +9,7 @@ public class Player extends MainCharacter {
 	private BooleanProperty inInventory;
 	private final static int jumpMax = 4;
 	private Tool hand;
+	private Inventory inventory;
 	
 	public Player(int x,int y, TileMap map, int att, int pv, int speed,Environment env) {
 		super(x,y,map, att, pv, jumpMax,env);
@@ -16,6 +17,7 @@ public class Player extends MainCharacter {
 		inInventory = new SimpleBooleanProperty(false);
 		hand = new Pelle(map, 1, this);
 		env.setPlayer(this);
+		this.inventory = new Inventory();
 	}
 	
 	public void stopAction() {
@@ -76,6 +78,10 @@ public class Player extends MainCharacter {
 		gravity();
 		// if (environment.IsOnBFSzero(getX(),getY()))
 		// 	environment.recalculateBFS();
+	}
+
+	public Inventory getInventory(){
+		return this.inventory;
 	}
 	
 	

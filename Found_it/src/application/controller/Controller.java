@@ -8,6 +8,7 @@ import application.modele.Enemy;
 import application.modele.Environment;
 import application.modele.Player;
 import application.modele.Projectile;
+import application.modele.Resources;
 import application.modele.Slime;
 import application.modele.Squeleton;
 import application.modele.TileMap;
@@ -41,6 +42,7 @@ public class Controller  implements Initializable{
 	private Environment e;
 	private MediaPlayer mediaPlayer;
 	private CharacterVue characterVue;
+	private InventoryVue invVue;
 	
 	@FXML
 	private TilePane mapTilePane;
@@ -52,15 +54,17 @@ public class Controller  implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Scene scene = new Scene(game,960,544); 
-		music();
+		// music();
 		mapTile = new TileMap();
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
-		player = new Player(50, 200, mapTile,0,300,2,e);
+		player = new Player(50, 200, mapTile,0,100,2,e);
 		characterVue = new CharacterVue(mapPane,player);
 		Camera cam = new Camera(scene, player, mapTile);
 		new InterfacePlayerVue(player, mapPane, cam);
-		new InventoryVue(mapPane, player, mapTile, cam); 
+		invVue = new InventoryVue(mapPane, player, mapTile, player.getInventory(), cam);
+		ListChangeListener<Resources> lObsInven = new ObsInventory(invVue);
+		player.getInventory().getInventoryProperty().addListener(lObsInven);
 		keyControl = new KeyManager(player);
 		ListChangeListener<Integer> listen = new MapManager(maps);
 		mapTile.getMap().addListener(listen);
@@ -84,17 +88,18 @@ public class Controller  implements Initializable{
 		gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.014),(ev ->{
+			if (!player.isAlive())
+				gameLoop.stop();
 			e.update();
 		}));
 		gameLoop.getKeyFrames().add(kf);
 	}
-	public void music() {
-		String s = "application/music.mp3";
-		Media media = new Media(Paths.get(s).toUri().toString());
-		System.out.println(Paths.get(s).toUri().toString());
-		mediaPlayer = new MediaPlayer(media);
-		mediaPlayer.play();
-	}
+	// public void music() {
+	// 	String s = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "application/music.mp3";
+	// 	Media media = new Media(Paths.get(s).toUri().toString());
+	// 	mediaPlayer = new MediaPlayer(media);
+	// 	mediaPlayer.play();
+	// }
 	
 	
 	
