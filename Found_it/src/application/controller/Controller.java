@@ -58,7 +58,7 @@ public class Controller  implements Initializable{
 		mapTile = new TileMap();
 		maps = new MapVue(mapTilePane, mapTile);
 		e = new Environment(mapTile);
-		player = new Player(50, 200, mapTile,0,300,2,e);
+		player = new Player(50, 200, mapTile,0,100,2,e);
 		characterVue = new CharacterVue(mapPane,player);
 		Camera cam = new Camera(scene, player, mapTile);
 		new InterfacePlayerVue(player, mapPane, cam);
@@ -88,6 +88,8 @@ public class Controller  implements Initializable{
 		gameLoop = new Timeline();
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 		KeyFrame kf = new KeyFrame(Duration.seconds(0.014),(ev ->{
+			if (!player.isAlive())
+				gameLoop.stop();
 			e.update();
 		}));
 		gameLoop.getKeyFrames().add(kf);
